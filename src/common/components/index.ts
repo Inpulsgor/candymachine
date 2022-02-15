@@ -5,5 +5,6 @@ export { default as PhaseCountdown } from "./PhaseCountdown/PhaseCountdown";
 export { default as MintCard } from "./MintCard/MintCard";
 export { default as MintButton } from "./MintButton/MintButton";
 export { default as Minter } from "./Minter/Minter";
+// export { default as Minter } from "./Minter/MinterPrev";
 export { default as PhaseHeader } from "./PhaseHeader/PhaseHeader";
 export { default as Wallet } from "./Wallet/Wallet";

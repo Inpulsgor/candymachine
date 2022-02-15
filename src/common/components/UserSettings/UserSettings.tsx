@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import * as anchor from "@project-serum/anchor";
 import {
-	WhitelistSettings,
-	PublicSaleSettings,
-	WelcomeSettings,
+  WhitelistSettings,
+  PublicSaleSettings,
+  WelcomeSettings,
 } from "types/user";
 
 function date(date: string) {
-	let f = new anchor.BN(new Date(date).getTime() / 1000);
-	return f;
+  let f = new anchor.BN(new Date(date).getTime() / 1000);
+  return f;
 }
 
 //
@@ -38,9 +38,9 @@ function date(date: string) {
 //
 
 export const mintPanic = {
-	enabled: false,
-	title: "Minting Paused",
-	desc: "We have dectected and issue while minting. Standby for an update",
+  enabled: false,
+  title: "Minting Paused",
+  desc: "We have dectected and issue while minting. Standby for an update",
 };
 
 ///                             ///
@@ -48,35 +48,35 @@ export const mintPanic = {
 ///                             ///
 
 export const welcomeSettings: WelcomeSettings = {
-	//Title and Description
-	title: "Welcome!",
-	desc: "Connect your wallet and load in! Whitelist mint starts soon!",
+  //Title and Description
+  title: "Welcome!",
+  desc: "Connect your wallet and load in! Whitelist mint starts soon!",
 
-	// Countdown Timer
-	countdownEnable: false,
-	countdownTo: date("2 Jan 2022 00:00:00 GMT"),
-	//Example date below
-	// date('29 2021 00:00:00 GMT')
+  // Countdown Timer
+  countdownEnable: false,
+  countdownTo: date("2 Jan 2022 00:00:00 GMT"),
+  //Example date below
+  // date('29 2021 00:00:00 GMT')
 
-	// showprice
-	showPrice: false,
+  // showprice
+  showPrice: false,
 
-	//Enable Custom HTML
-	enableCustomHTML: false,
+  //Enable Custom HTML
+  enableCustomHTML: false,
 };
 
 export class MintWelcomeCustomHTML extends React.Component {
-	render() {
-		return (
-			<div className="custom-mint-container">
-				{/* Add Custom HTML code for Welcome Here! */}
+  render() {
+    return (
+      <div className="custom-mint-container">
+        {/* Add Custom HTML code for Welcome Here! */}
 
-				<p>Test 1</p>
+        <p>Test 1</p>
 
-				{/* End */}
-			</div>
-		);
-	}
+        {/* End */}
+      </div>
+    );
+  }
 }
 
 ///                             ///
@@ -90,35 +90,35 @@ export class MintWelcomeCustomHTML extends React.Component {
 // SLP token. This also does not stop people minting directly from the program.
 
 export const whitelistSettings: WhitelistSettings = {
-	//If you want to use the whitelist feature enable it.
-	enabled: true,
+  //If you want to use the whitelist feature enable it.
+  enabled: true,
 
-	startDate: date("1 Jan 2022 00:00:00 GMT"),
-	endDate: date("8 Jan 2022 00:00:00 GMT"),
-	countdown: true,
-	//Example date below
-	// date('29 2021 00:00:00 GMT')
+  startDate: date("1 Jan 2022 00:00:00 GMT"),
+  endDate: date("8 Jan 2022 00:00:00 GMT"),
+  countdown: true,
+  //Example date below
+  // date('29 2021 00:00:00 GMT')
 
-	//Wallet Title and Description
-	title: "White List",
-	desc: undefined,
+  //Wallet Title and Description
+  title: "White List",
+  desc: undefined,
 
-	//Enable Custom HTML Below
-	enableCustomHTML: false,
+  //Enable Custom HTML Below
+  enableCustomHTML: false,
 };
 
 export class MintWhitelistCustomHTML extends Component {
-	render() {
-		return (
-			<div className="custom-mint-container">
-				{/* Add Custom HTML code for Whitelist Stage Here! */}
+  render() {
+    return (
+      <div className="custom-mint-container">
+        {/* Add Custom HTML code for Whitelist Stage Here! */}
 
-				<p>Test 2</p>
+        <p>Test 2</p>
 
-				{/* End */}
-			</div>
-		);
-	}
+        {/* End */}
+      </div>
+    );
+  }
 }
 
 ///                             ///
@@ -126,32 +126,32 @@ export class MintWhitelistCustomHTML extends Component {
 ///                             ///
 
 export const publicSaleSettings: PublicSaleSettings = {
-	//start date and end date must match your Candy Machine Config for public launch!
+  //start date and end date must match your Candy Machine Config for public launch!
 
-	startDate: date("7 Jan 2022 00:00:00 GMT"),
-	endDate: undefined,
-	countdown: false,
-	//Example date below
-	// date('29 2021 00:00:00 GMT')
+  startDate: date("7 Jan 2022 00:00:00 GMT"),
+  endDate: undefined,
+  countdown: false,
+  //Example date below
+  // date('29 2021 00:00:00 GMT')
 
-	//Title and Description
-	title: "Public Sale",
-	desc: "Sale is now live. Mint your NFT below",
+  //Title and Description
+  title: "Public Sale",
+  desc: "Sale is now live. Mint your NFT below",
 
-	//Enable Custom HTML
-	enableCustomHTML: false,
+  //Enable Custom HTML
+  enableCustomHTML: false,
 };
 
 export class MintPublicSaleCustomHTML extends Component {
-	render() {
-		return (
-			<div className="custom-mint-container">
-				{/* Add Custom HTML code for Public Minting Here! */}
+  render() {
+    return (
+      <div className="custom-mint-container">
+        {/* Add Custom HTML code for Public Minting Here! */}
 
-				<p>Test 3</p>
+        <p>Test 3</p>
 
-				{/* End */}
-			</div>
-		);
-	}
+        {/* End */}
+      </div>
+    );
+  }
 }

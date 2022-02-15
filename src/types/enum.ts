@@ -1,4 +1,4 @@
 export enum ROUTES {
-	HOME = "/",
-	NOT_FOUND = "*",
+  HOME = "/",
+  NOT_FOUND = "*",
 }

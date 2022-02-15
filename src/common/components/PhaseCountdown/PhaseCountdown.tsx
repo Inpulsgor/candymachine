@@ -48,82 +48,82 @@ import { CountdownRender, PhaseCountdownProps } from "./PhaseCountdown.types";
 // );
 
 const PhaseCountdown: FC<PhaseCountdownProps> = ({
-	date,
-	status,
-	style,
-	start,
-	end,
-	onComplete,
+  date,
+  status,
+  style,
+  start,
+  end,
+  onComplete,
 }) => {
-	// const classes = useStyles();
+  // const classes = useStyles();
 
-	const [isFixed, setIsFixed] = useState(
-		start && end && date ? start.getTime() - Date.now() < 0 : false
-	);
+  const [isFixed, setIsFixed] = useState(
+    start && end && date ? start.getTime() - Date.now() < 0 : false
+  );
 
-	const renderCountdown = ({
-		days,
-		hours,
-		minutes,
-		seconds,
-		completed,
-	}: CountdownRender) => {
-		hours += days * 24;
-		if (completed) {
-			return status ? <span className={"classes.done"}>{status}</span> : null;
-		} else {
-			return (
-				<div className={"classes.root"} style={style}>
-					{isFixed && (
-						<Paper elevation={0}>
-							<span className={"classes.item"}>+</span>
-						</Paper>
-					)}
-					<Paper elevation={0}>
-						<span className={"classes.item"}>
-							{hours < 10 ? `0${hours}` : hours}
-						</span>
-						<span>hrs</span>
-					</Paper>
-					<Paper elevation={0}>
-						<span className={"classes.item"}>
-							{minutes < 10 ? `0${minutes}` : minutes}
-						</span>
-						<span>mins</span>
-					</Paper>
-					<Paper elevation={0}>
-						<span className={"classes.item"}>
-							{seconds < 10 ? `0${seconds}` : seconds}
-						</span>
-						<span>secs</span>
-					</Paper>
-				</div>
-			);
-		}
-	};
+  const renderCountdown = ({
+    days,
+    hours,
+    minutes,
+    seconds,
+    completed,
+  }: CountdownRender) => {
+    hours += days * 24;
+    if (completed) {
+      return status ? <span className={"classes.done"}>{status}</span> : null;
+    } else {
+      return (
+        <div className={"classes.root"} style={style}>
+          {isFixed && (
+            <Paper elevation={0}>
+              <span className={"classes.item"}>+</span>
+            </Paper>
+          )}
+          <Paper elevation={0}>
+            <span className={"classes.item"}>
+              {hours < 10 ? `0${hours}` : hours}
+            </span>
+            <span>hrs</span>
+          </Paper>
+          <Paper elevation={0}>
+            <span className={"classes.item"}>
+              {minutes < 10 ? `0${minutes}` : minutes}
+            </span>
+            <span>mins</span>
+          </Paper>
+          <Paper elevation={0}>
+            <span className={"classes.item"}>
+              {seconds < 10 ? `0${seconds}` : seconds}
+            </span>
+            <span>secs</span>
+          </Paper>
+        </div>
+      );
+    }
+  };
 
-	if (date && start && end) {
-		if (isFixed) {
-			<Countdown
-				date={start}
-				now={() => end.getTime()}
-				onComplete={() => setIsFixed(false)}
-				renderer={renderCountdown}
-			/>;
-		}
-	}
+  if (date && start && end) {
+    if (isFixed) {
+      <Countdown
+        date={start}
+        now={() => end.getTime()}
+        onComplete={() => setIsFixed(false)}
+        renderer={renderCountdown}
+      />;
+    }
+  }
 
-	if (date) {
-		return (
-			<Countdown
-				date={date}
-				onComplete={onComplete}
-				renderer={renderCountdown}
-			/>
-		);
-	} else {
-		return null;
-	}
+  if (date) {
+    return (
+      <Countdown
+        date={date}
+        onComplete={onComplete}
+        renderer={renderCountdown}
+      />
+    );
+  } else {
+    return null;
+  }
 };
 
 export default PhaseCountdown;
