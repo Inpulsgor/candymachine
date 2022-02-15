@@ -1,13 +1,24 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Toolbar, Typography, Button, IconButton } from "@mui/material";
 import { ReactComponent as Logo } from "assets/icons/logo.svg";
+import { ROUTES } from "types/enum";
 import styles from "./AppBasement.styles";
 
 const AppBasement: FC = () => {
+  const navigate = useNavigate();
+  const handleClick = () => navigate(ROUTES.HOME);
+
   return (
     <Box sx={styles.footer} component="footer">
       <Toolbar sx={styles.toolbar}>
-        <IconButton size="large" edge="start" color="inherit" aria-label="menu">
+        <IconButton
+          onClick={handleClick}
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+        >
           <Logo width="40" />
         </IconButton>
         <Typography sx={styles.copyright} variant="body2">
