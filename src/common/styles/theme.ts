@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/named
 import { createTheme, responsiveFontSizes, Theme } from "@mui/material";
-import { grey } from "@mui/material/colors";
 
 let theme: Theme = createTheme({
   palette: {
@@ -21,15 +20,15 @@ let theme: Theme = createTheme({
       contrastText: "#002E36",
     },
     custom: {
-      white: "#FFFFFF",
-      black: "#000000",
+      white: "#FFF",
+      black: "#000",
       mercury: "#E4E4E4",
     },
     background: {
       default: "#141414",
     },
     text: {
-      primary: "#fff",
+      primary: "#FFF",
       secondary: "#A2A2A2",
     },
   },

@@ -14,11 +14,11 @@ import { MinterProps } from "./Minter.types";
 import styles from "./Minter.styles";
 import {
   awaitTransactionSignatureConfirmation,
-  CandyMachineAccount,
   CANDY_MACHINE_PROGRAM,
   getCandyMachineState,
   mintOneToken,
 } from "common/utils/candymachine";
+import { CandyMachineAccount } from "types/candymachine";
 
 const Minter: FC<MinterProps> = ({
   connection,

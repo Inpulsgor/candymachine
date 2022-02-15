@@ -1,9 +1,21 @@
-import { FC } from "react";
+import { FC, useEffect, createRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import { PageWrapper } from "common/layout";
+import { ROUTES } from "types/enum";
 import styles from "./NotFound.styles";
 
 const NotFound: FC = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => navigate(ROUTES.HOME), 5000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [navigate]);
+
   return (
     <PageWrapper>
       <Box sx={styles.wrapper}>

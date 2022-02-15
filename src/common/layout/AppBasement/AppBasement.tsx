@@ -1,10 +1,7 @@
 import { FC } from "react";
 import { Box, Toolbar, Typography, Button, IconButton } from "@mui/material";
 import { ReactComponent as Logo } from "assets/icons/logo.svg";
-import data from "common/static/content.json";
 import styles from "./AppBasement.styles";
-
-const { copy, terms } = data.pages.footer;
 
 const AppBasement: FC = () => {
   return (
@@ -14,11 +11,12 @@ const AppBasement: FC = () => {
           <Logo width="40" />
         </IconButton>
         <Typography sx={styles.copyright} variant="body2">
-          {copy}
+          Diamond Hands NFT, a collaboration between Cryptonary and DC LLC. All
+          rights reserved.
         </Typography>
         <Button>
           <Typography sx={styles.terms} variant="body2">
-            {terms}
+            Terms {"&"} Conditions
           </Typography>
         </Button>
       </Toolbar>

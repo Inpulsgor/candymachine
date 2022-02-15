@@ -2,7 +2,7 @@ import * as anchor from "@project-serum/anchor";
 import { MintLayout, TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
 import { SystemProgram } from "@solana/web3.js";
 import { sendTransactions } from "common/utils/connection";
-import { CandyMachineState } from "types/candymachine";
+import { CandyMachineState, CandyMachineAccount } from "types/candymachine";
 import {
   CIVIC,
   getAtaForMint,
@@ -10,8 +10,6 @@ import {
   getNetworkToken,
   SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
 } from "common/utils/utils";
-
-console.log("anchor", anchor);
 
 export const CANDY_MACHINE_PROGRAM = new anchor.web3.PublicKey(
   "cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ"
@@ -24,12 +22,6 @@ const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey(
 const sleep = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
-
-export interface CandyMachineAccount {
-  id: anchor.web3.PublicKey;
-  program: anchor.Program;
-  state: CandyMachineState;
-}
 
 export const awaitTransactionSignatureConfirmation = async (
   txid: anchor.web3.TransactionSignature,

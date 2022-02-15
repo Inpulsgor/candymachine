@@ -3,7 +3,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { Container, Grid, Typography } from "@mui/material";
 import { PhaseCountdown } from "common/components";
 import { toDate } from "common/utils/utils";
-import { CandyMachineAccount } from "common/utils/candymachine";
+import { CandyMachineAccount } from "types/candymachine";
 import {
   publicSaleSettings,
   whitelistSettings,

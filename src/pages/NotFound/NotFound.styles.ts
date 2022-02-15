@@ -7,7 +7,7 @@ const styles = {
     minHeight: "100%",
   },
   title: {
-    mb: "10px",
+    mb: "20px",
   },
   text: {},
 };

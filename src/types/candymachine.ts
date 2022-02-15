@@ -27,3 +27,9 @@ export interface CandyMachineState {
     hash: Uint8Array;
   };
 }
+
+export interface CandyMachineAccount {
+  id: anchor.web3.PublicKey;
+  program: anchor.Program;
+  state: CandyMachineState;
+}

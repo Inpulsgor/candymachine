@@ -8,11 +8,11 @@ import { Container, Snackbar, Paper, Grid, Alert, Box } from "@mui/material";
 
 import {
   awaitTransactionSignatureConfirmation,
-  CandyMachineAccount,
   CANDY_MACHINE_PROGRAM,
   getCandyMachineState,
   mintOneToken,
 } from "common/utils/candymachine";
+import { CandyMachineAccount } from "types/candymachine";
 
 import { MintButton, PhaseHeader } from "common/components";
 import { getPhase } from "common/components/PhaseHeader/PhaseHeader";
