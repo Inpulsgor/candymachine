@@ -2,6 +2,7 @@
 	"name": "candymachine-v2-boiler-mint-site-noflp",
 	"version": "0.1.0",
 	"private": true,
+	"homepage": "https://Inpulsgor.github.io/candymachine",
 	"scripts": {
 		"prepare": "husky install",
 		"start": "react-scripts start",
