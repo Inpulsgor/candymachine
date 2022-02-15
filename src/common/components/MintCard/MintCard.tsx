@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import {
   Box,
@@ -11,6 +11,7 @@ import {
   Button,
 } from "@mui/material";
 import { Info as InfoIcon } from "@mui/icons-material";
+import video from "assets/video.mp4";
 
 import { Wallet } from "common/components";
 import { ReactComponent as DiamondIcon } from "assets/icons/diamond.svg";
@@ -20,18 +21,12 @@ import styles from "./MintCard.styles";
 const MintCard: FC<MintCardProps> = () => {
   const { connected } = useWallet();
   const walletConnected = connected ? "connected" : "not connected";
+  const vidRef = useRef(null);
 
   return (
     <Card sx={styles.card}>
       <Box sx={styles.mediaBox}>
-        <CardMedia
-          sx={styles.media}
-          component="img"
-          height="230"
-          width="200"
-          image="https://cdn.pixabay.com/photo/2018/08/28/13/29/avatar-3637561_960_720.png"
-          alt="avatar"
-        />
+        <CardMedia sx={styles.media} component="video" src={video} autoPlay />
       </Box>
 
       <CardContent sx={styles.contentBox}>
