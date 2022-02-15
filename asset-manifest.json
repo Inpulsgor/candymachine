@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/candymachine/static/css/main.fc9345e8.css",
+    "main.js": "/candymachine/static/js/main.6ea133d8.js",
+    "static/js/431.a76517a8.chunk.js": "/candymachine/static/js/431.a76517a8.chunk.js",
+    "static/js/126.c6c3957e.chunk.js": "/candymachine/static/js/126.c6c3957e.chunk.js",
+    "static/js/489.57296c56.chunk.js": "/candymachine/static/js/489.57296c56.chunk.js",
+    "static/js/608.877cddfb.chunk.js": "/candymachine/static/js/608.877cddfb.chunk.js",
+    "static/js/507.37dcfee7.chunk.js": "/candymachine/static/js/507.37dcfee7.chunk.js",
+    "HomePage.js": "/candymachine/static/js/HomePage.6c2e3f69.chunk.js",
+    "NotFoundPage.js": "/candymachine/static/js/NotFoundPage.2af3c43a.chunk.js",
+    "static/js/787.f64e0b59.chunk.js": "/candymachine/static/js/787.f64e0b59.chunk.js",
+    "static/js/880.412a82b9.chunk.js": "/candymachine/static/js/880.412a82b9.chunk.js",
+    "static/media/logo.svg": "/candymachine/static/media/logo.946e57a2fdc4b4f529be15de91263ece.svg",
+    "index.html": "/candymachine/index.html",
+    "static/media/diamond.svg": "/candymachine/static/media/diamond.96b66660d5ca077ca1f3c99cc5992375.svg",
+    "static/media/play.svg": "/candymachine/static/media/play.af9b12ba2ffe0954cf96cb8484dec2f7.svg",
+    "main.fc9345e8.css.map": "/candymachine/static/css/main.fc9345e8.css.map",
+    "main.6ea133d8.js.map": "/candymachine/static/js/main.6ea133d8.js.map",
+    "431.a76517a8.chunk.js.map": "/candymachine/static/js/431.a76517a8.chunk.js.map",
+    "126.c6c3957e.chunk.js.map": "/candymachine/static/js/126.c6c3957e.chunk.js.map",
+    "489.57296c56.chunk.js.map": "/candymachine/static/js/489.57296c56.chunk.js.map",
+    "608.877cddfb.chunk.js.map": "/candymachine/static/js/608.877cddfb.chunk.js.map",
+    "HomePage.6c2e3f69.chunk.js.map": "/candymachine/static/js/HomePage.6c2e3f69.chunk.js.map",
+    "NotFoundPage.2af3c43a.chunk.js.map": "/candymachine/static/js/NotFoundPage.2af3c43a.chunk.js.map",
+    "787.f64e0b59.chunk.js.map": "/candymachine/static/js/787.f64e0b59.chunk.js.map",
+    "880.412a82b9.chunk.js.map": "/candymachine/static/js/880.412a82b9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc9345e8.css",
+    "static/js/main.6ea133d8.js"
+  ]
+}
