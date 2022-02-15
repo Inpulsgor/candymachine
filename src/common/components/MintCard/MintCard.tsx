@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import {
   Box,
   Card,
@@ -14,13 +15,12 @@ import { Info as InfoIcon } from "@mui/icons-material";
 import { Wallet } from "common/components";
 import { ReactComponent as DiamondIcon } from "assets/icons/diamond.svg";
 import { MintCardProps } from "./MintCard.types";
-import data from "common/static/content.json";
 import styles from "./MintCard.styles";
 
-const { connect, title, wallet, phase, description, notConnected, tooltip } =
-  data.pages.home.mint;
-
 const MintCard: FC<MintCardProps> = () => {
+  const { connected } = useWallet();
+  const walletConnected = connected ? "connected" : "not connected";
+
   return (
     <Card sx={styles.card}>
       <Box sx={styles.mediaBox}>
@@ -37,19 +37,19 @@ const MintCard: FC<MintCardProps> = () => {
       <CardContent sx={styles.contentBox}>
         <Box sx={styles.titleBox}>
           <Typography sx={styles.title} variant="h2" component="span">
-            {title}
+            Time to Mint!
           </Typography>
           <DiamondIcon width="26" />
         </Box>
 
         <Tooltip
           sx={styles.tooltip}
-          title={<Typography variant="body2">{tooltip}</Typography>}
+          title={<Typography variant="body2">Some tooltip</Typography>}
           placement="top"
         >
           <Button sx={styles.tooltipBtn} variant="outlined" color="info">
             <Typography sx={styles.tooltipText} variant="body2">
-              {phase}
+              Phase 1
             </Typography>
             <InfoIcon sx={styles.tooltipIcon} />
           </Button>
@@ -58,24 +58,22 @@ const MintCard: FC<MintCardProps> = () => {
 
       <CardActions sx={styles.actionsBox}>
         <Wallet />
-        {/* <Button sx={styles.walletBtn} variant="contained" fullWidth>
-					<Typography sx={styles.walletBtnText} variant="body1">
-						{connect}
-					</Typography>
-				</Button> */}
       </CardActions>
 
       <CardContent sx={styles.contentBoxSecond}>
         <Typography sx={styles.walletText} variant="body1" component="span">
-          {wallet}
+          Wallet
         </Typography>
-
-        <Typography sx={styles.notConnected} variant="body1" component="span">
-          {notConnected}
+        <Typography
+          sx={connected ? styles.connected : styles.notConnected}
+          variant="body1"
+          component="span"
+        >
+          {walletConnected}
         </Typography>
-
         <Typography sx={styles.description} variant="body2" component="p">
-          {description}
+          If you have any issues please reach out to a member of the team on
+          Discord. We’ll be happy to help.
         </Typography>
       </CardContent>
     </Card>

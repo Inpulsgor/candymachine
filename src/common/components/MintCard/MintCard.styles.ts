@@ -86,11 +86,6 @@ const styles = {
     borderRadius: "6px",
     mb: "16px",
   },
-  // walletBtn: {
-  // 	background: "linear-gradient(90deg, #FBC7D4 0%, #9796F0 100%), #4AAF47",
-  // 	padding: "20px 0",
-  // },
-  // walletBtnText: { fontWeight: 600, color: "#141414", textTransform: "none" },
   contentBoxSecond: { display: "flex", flexWrap: "wrap", padding: 0 },
   walletText: { display: "block", width: "50%" },
   notConnected: {
@@ -98,6 +93,12 @@ const styles = {
     width: "50%",
     textAlign: "right",
     color: "#FF9999",
+  },
+  connected: {
+    display: "block",
+    width: "50%",
+    textAlign: "right",
+    color: "#81c784",
   },
   description: {
     mt: "48px",

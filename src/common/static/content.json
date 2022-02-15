@@ -1,15 +1,6 @@
 {
   "pages": {
     "home": {
-      "mint": {
-        "title": "Time to Mint!",
-        "phase": "Phase 1",
-        "tooltip": "Some tooltip",
-        "connect": "Connect Wallet",
-        "wallet": "Wallet",
-        "notConnected": "not connected",
-        "description": "If you have any issues please reach out to a member of the team on Discord. We’ll be happy to help."
-      },
       "faq": {
         "title": "FAQs",
         "items": [
