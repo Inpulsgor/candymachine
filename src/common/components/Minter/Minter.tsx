@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import * as anchor from "@project-serum/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 import { GatewayProvider } from "@civic/solana-gateway-react";
 import { Container, Box, Snackbar, Paper, Grid, Alert } from "@mui/material";
-import styled from "styled-components";
 
 import { AlertState } from "common/utils/utils";
 import { MintButton, PhaseHeader } from "common/components";
@@ -28,24 +27,15 @@ import {
 	MintPublicSaleCustomHTML,
 } from "common/components/UserSettings/UserSettings";
 
-const ConnectButton = styled(WalletDialogButton)`
-	position: absolute;
-	left: 0px;
-	bottom: -15px;
-	width: 100%;
-	height: 60px;
-	margin-top: 10px;
-	margin-bottom: 5px;
-	background: linear-gradient(180deg, #604ae5 0%, #813eee 100%);
-	color: white;
-	font-size: 16px;
-	font-weight: bold;
-	transform: translate(0%, -50%);
-`;
-
-const Minter = (props: MinterProps) => {
+const Minter: FC<MinterProps> = ({
+	connection,
+	rpcHost,
+	startDate,
+	txTimeout,
+	candyMachineId,
+}) => {
 	// const [yourSOLBalance, setYourSOLBalance] = useState<number | null>(null);
-	const rpcUrl = props.rpcHost;
+	const rpcUrl = rpcHost;
 	const [whiteListTokenBalance, setWhiteListTokenBalance] = useState<number>(0);
 	const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 	const [mintingTotal, setMintingTotal] = useState<number | null>(null);
@@ -90,8 +80,8 @@ const Minter = (props: MinterProps) => {
 				if (mintTxId) {
 					status = await awaitTransactionSignatureConfirmation(
 						mintTxId,
-						props.txTimeout,
-						props.connection,
+						txTimeout,
+						connection,
 						"singleGossip",
 						true
 					);
@@ -160,7 +150,7 @@ const Minter = (props: MinterProps) => {
 			}
 
 			// try {
-			//   const balance = await props.connection.getBalance(
+			//   const balance = await connection.getBalance(
 			//     anchorWallet.publicKey
 			//   );
 			//   console.log("Sol balance is: " + balance);
@@ -170,12 +160,12 @@ const Minter = (props: MinterProps) => {
 			//   console.log(e);
 			// }
 
-			if (props.candyMachineId) {
+			if (candyMachineId) {
 				try {
 					const cndy = await getCandyMachineState(
 						anchorWallet,
-						props.candyMachineId,
-						props.connection
+						candyMachineId,
+						connection
 					);
 					await setCandyMachine(cndy);
 				} catch (e) {
@@ -186,16 +176,18 @@ const Minter = (props: MinterProps) => {
 				console.log("No candy machine detected in configuration.");
 			}
 		})();
-	}, [anchorWallet, props.candyMachineId, props.connection]);
+	}, [anchorWallet, candyMachineId, connection]);
 
 	useEffect(() => {
 		async function getTokenAmount() {
 			if (publicKey && candyMachine?.state.whitelistMintSettings?.mint) {
 				try {
-					const tokenAmount =
-						await props.connection.getParsedTokenAccountsByOwner(publicKey, {
+					const tokenAmount = await connection.getParsedTokenAccountsByOwner(
+						publicKey,
+						{
 							mint: candyMachine?.state.whitelistMintSettings?.mint,
-						});
+						}
+					);
 
 					return tokenAmount.value[0].account.data.parsed.info.tokenAmount
 						.amount;
@@ -226,7 +218,7 @@ const Minter = (props: MinterProps) => {
 		} else {
 			setMintingTotal(candyMachine?.state.itemsRedeemed);
 		}
-	}, [candyMachine, publicKey, props.connection]);
+	}, [candyMachine, publicKey, connection]);
 
 	const phase = getPhase(candyMachine);
 
@@ -313,7 +305,7 @@ const Minter = (props: MinterProps) => {
 									</Grid>
 
 									{!wallet.connected ? (
-										<ConnectButton>Connect{""}</ConnectButton>
+										<WalletDialogButton>Connect{""}</WalletDialogButton>
 									) : (
 										<Box
 											sx={{

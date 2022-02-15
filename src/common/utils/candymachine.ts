@@ -11,6 +11,8 @@ import {
 	SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
 } from "common/utils/utils";
 
+console.log("anchor", anchor);
+
 export const CANDY_MACHINE_PROGRAM = new anchor.web3.PublicKey(
 	"cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ"
 );
@@ -130,16 +132,14 @@ export const getCandyMachineState = async (
 	candyMachineId: anchor.web3.PublicKey,
 	connection: anchor.web3.Connection
 ): Promise<CandyMachineAccount> => {
+	const anch: any = anchor;
+
 	const provider = new anchor.Provider(connection, anchorWallet, {
 		preflightCommitment: "recent",
 	});
 
-	const idl: any = await anchor.Program.fetchIdl(
-		CANDY_MACHINE_PROGRAM,
-		provider
-	);
-
-	const program = new anchor.Program(idl, CANDY_MACHINE_PROGRAM, provider);
+	const idl: any = await anch.Program.fetchIdl(CANDY_MACHINE_PROGRAM, provider);
+	const program = new anch.Program(idl, CANDY_MACHINE_PROGRAM, provider);
 
 	const state: any = await program.account.candyMachine.fetch(candyMachineId);
 	const itemsAvailable = state.data.itemsAvailable.toNumber();

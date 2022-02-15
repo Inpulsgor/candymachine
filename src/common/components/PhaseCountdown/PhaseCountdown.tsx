@@ -1,50 +1,51 @@
 import { FC, useState } from "react";
 import Countdown from "react-countdown";
-import { Paper, Theme, createStyles, makeStyles } from "@mui/material";
+import { Paper, Theme, createStyles } from "@mui/material";
+// import { makeStyles } from "@mui/material";
 import { CountdownRender, PhaseCountdownProps } from "./PhaseCountdown.types";
 
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			display: "flex",
-			padding: theme.spacing(0),
-			"& > *": {
-				margin: theme.spacing(0.5),
-				marginRight: 0,
-				width: theme.spacing(6),
-				height: theme.spacing(6),
-				display: "flex",
-				flexDirection: "column",
-				alignContent: "center",
-				alignItems: "center",
-				justifyContent: "center",
-				background: "#384457",
-				color: "white",
-				borderRadius: 5,
-				fontSize: 10,
-			},
-		},
-		done: {
-			display: "flex",
-			margin: theme.spacing(1),
-			marginRight: 0,
-			padding: theme.spacing(1),
-			flexDirection: "column",
-			alignContent: "center",
-			alignItems: "center",
-			justifyContent: "center",
-			background: "#384457",
-			color: "white",
-			borderRadius: 5,
-			fontWeight: "bold",
-			fontSize: 18,
-		},
-		item: {
-			fontWeight: "bold",
-			fontSize: 18,
-		},
-	})
-);
+// const useStyles = makeStyles((theme: Theme) =>
+// 	createStyles({
+// 		root: {
+// 			display: "flex",
+// 			padding: theme.spacing(0),
+// 			"& > *": {
+// 				margin: theme.spacing(0.5),
+// 				marginRight: 0,
+// 				width: theme.spacing(6),
+// 				height: theme.spacing(6),
+// 				display: "flex",
+// 				flexDirection: "column",
+// 				alignContent: "center",
+// 				alignItems: "center",
+// 				justifyContent: "center",
+// 				background: "#384457",
+// 				color: "white",
+// 				borderRadius: 5,
+// 				fontSize: 10,
+// 			},
+// 		},
+// 		done: {
+// 			display: "flex",
+// 			margin: theme.spacing(1),
+// 			marginRight: 0,
+// 			padding: theme.spacing(1),
+// 			flexDirection: "column",
+// 			alignContent: "center",
+// 			alignItems: "center",
+// 			justifyContent: "center",
+// 			background: "#384457",
+// 			color: "white",
+// 			borderRadius: 5,
+// 			fontWeight: "bold",
+// 			fontSize: 18,
+// 		},
+// 		item: {
+// 			fontWeight: "bold",
+// 			fontSize: 18,
+// 		},
+// 	})
+// );
 
 const PhaseCountdown: FC<PhaseCountdownProps> = ({
 	date,
