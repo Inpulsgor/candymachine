@@ -17,15 +17,25 @@ export const FAIR_LAUNCH_PROGRAM_ID = new anchor.web3.PublicKey(
 	"faircnAB9k59Y4TXmLabBULeuTLgV7TkGMGNkjnA15j"
 );
 
-export const toDate = (value?: anchor.BN) => {
-	if (!value) {
-		return;
-	}
+export const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID =
+	new anchor.web3.PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
 
+export const CIVIC = new anchor.web3.PublicKey(
+	"gatem74V238djXdzWnJf94Wo1DcnuGkfijbf3AuBhfs"
+);
+
+export const date = (date: string) => {
+	let e = new Date(date);
+	let f = new anchor.BN(new Date(date).getTime() / 1000);
+	return f;
+};
+
+export const toDate = (value?: anchor.BN) => {
+	if (!value) return;
 	return new Date(value.toNumber() * 1000);
 };
 
-const numberFormater = new Intl.NumberFormat("en-US", {
+export const numberFormater = new Intl.NumberFormat("en-US", {
 	style: "decimal",
 	minimumFractionDigits: 2,
 	maximumFractionDigits: 2,
@@ -48,12 +58,6 @@ export const formatNumber = {
 	},
 };
 
-export const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID =
-	new anchor.web3.PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
-
-export const CIVIC = new anchor.web3.PublicKey(
-	"gatem74V238djXdzWnJf94Wo1DcnuGkfijbf3AuBhfs"
-);
 export const getFairLaunchTicketSeqLookup = async (
 	tokenMint: anchor.web3.PublicKey,
 	seq: anchor.BN
@@ -112,12 +116,12 @@ export const getFairLaunchTicket = async (
 	);
 };
 
-export function createAssociatedTokenAccountInstruction(
+export const createAssociatedTokenAccountInstruction = (
 	associatedTokenAddress: anchor.web3.PublicKey,
 	payer: anchor.web3.PublicKey,
 	walletAddress: anchor.web3.PublicKey,
 	splTokenMintAddress: anchor.web3.PublicKey
-) {
+) => {
 	const keys = [
 		{
 			pubkey: payer,
@@ -155,14 +159,16 @@ export function createAssociatedTokenAccountInstruction(
 			isWritable: false,
 		},
 	];
+
 	return new TransactionInstruction({
 		keys,
 		programId: SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
 		data: Buffer.from([]),
 	});
-}
+};
 
-export function formatSol(sol: number) {
-	var formated = sol / 1000000000;
+export const formatSol = (sol: number) => {
+	const formated = sol / 1000000000;
+
 	return formated;
-}
+};

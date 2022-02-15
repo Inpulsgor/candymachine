@@ -1,28 +1,24 @@
 import { useEffect, useMemo, useState } from "react";
-import styled from "styled-components";
-import { Container, Snackbar, Paper, Grid, Alert } from "@mui/material";
 import * as anchor from "@project-serum/anchor";
 import { PublicKey } from "@solana/web3.js";
-
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
+import { GatewayProvider } from "@civic/solana-gateway-react";
+import { Container, Box, Snackbar, Paper, Grid, Alert } from "@mui/material";
+import styled from "styled-components";
 
+import { AlertState } from "common/utils/utils";
+import { MintButton, PhaseHeader } from "common/components";
+import { getPhase } from "common/components/PhaseHeader/PhaseHeader";
+import { Phase } from "common/components/PhaseHeader/PhaseHeader.types";
+import { MinterProps } from "./Minter.types";
 import {
 	awaitTransactionSignatureConfirmation,
 	CandyMachineAccount,
 	CANDY_MACHINE_PROGRAM,
 	getCandyMachineState,
 	mintOneToken,
-} from "common/utils/candy-machine";
-
-import { AlertState } from "common/utils/utils";
-import { MintButton } from "common/components/MintButton/MintButton";
-import {
-	getPhase,
-	Phase,
-	PhaseHeader,
-} from "common/components/PhaseHeader/PhaseHeader";
-import { GatewayProvider } from "@civic/solana-gateway-react";
+} from "common/utils/candymachine";
 import {
 	whitelistSettings,
 	publicSaleSettings,
@@ -30,7 +26,7 @@ import {
 	MintWelcomeCustomHTML,
 	MintWhitelistCustomHTML,
 	MintPublicSaleCustomHTML,
-} from "common/utils/user-settings";
+} from "common/components/UserSettings/UserSettings";
 
 const ConnectButton = styled(WalletDialogButton)`
 	position: absolute;
@@ -47,23 +43,7 @@ const ConnectButton = styled(WalletDialogButton)`
 	transform: translate(0%, -50%);
 `;
 
-const MintContainer = styled.div`
-	position: absolute;
-	width: 100%;
-	left: 0px;
-	bottom: 15px;
-`; // add your styles here
-
-export interface HomeProps {
-	candyMachineId?: anchor.web3.PublicKey;
-
-	connection: anchor.web3.Connection;
-	startDate: number;
-	txTimeout: number;
-	rpcHost: string;
-}
-
-const Home = (props: HomeProps) => {
+const Minter = (props: MinterProps) => {
 	// const [yourSOLBalance, setYourSOLBalance] = useState<number | null>(null);
 	const rpcUrl = props.rpcHost;
 	const [whiteListTokenBalance, setWhiteListTokenBalance] = useState<number>(0);
@@ -71,11 +51,13 @@ const Home = (props: HomeProps) => {
 	const [mintingTotal, setMintingTotal] = useState<number | null>(null);
 	const [itemsAvailable, setItemsAvailable] = useState<number | null>(null);
 	const [publicKey, setPublicKey] = useState<PublicKey>();
-
 	const [candyMachine, setCandyMachine] = useState<CandyMachineAccount>();
-
 	const [price, setPrice] = useState<number | null>(null);
-
+	const [alertState, setAlertState] = useState<AlertState>({
+		open: false,
+		message: "",
+		severity: undefined,
+	});
 	const wallet = useWallet();
 
 	const anchorWallet = useMemo(() => {
@@ -94,12 +76,6 @@ const Home = (props: HomeProps) => {
 			signTransaction: wallet.signTransaction,
 		} as anchor.Wallet;
 	}, [wallet]);
-
-	const [alertState, setAlertState] = useState<AlertState>({
-		open: false,
-		message: "",
-		severity: undefined,
-	});
 
 	const onMint = async () => {
 		try {
@@ -147,6 +123,7 @@ const Home = (props: HomeProps) => {
 				if (!error.message) {
 					message = "Transaction Timeout! Please try again.";
 				} else if (error.message.indexOf("0x138")) {
+					message = "";
 				} else if (error.message.indexOf("0x137")) {
 					message = `SOLD OUT!`;
 				} else if (error.message.indexOf("0x135")) {
@@ -255,9 +232,9 @@ const Home = (props: HomeProps) => {
 
 	return (
 		<Container>
-			<Container maxWidth="xs" style={{ position: "relative" }}>
+			<Container maxWidth="xs" sx={{ position: "relative" }}>
 				<Paper
-					style={{
+					sx={{
 						padding: "34px 24px 90px 24px",
 						display: "flex",
 
@@ -338,7 +315,14 @@ const Home = (props: HomeProps) => {
 									{!wallet.connected ? (
 										<ConnectButton>Connect{""}</ConnectButton>
 									) : (
-										<MintContainer>
+										<Box
+											sx={{
+												position: "absolute",
+												width: "100%",
+												left: "0px",
+												bottom: "15px",
+											}}
+										>
 											{candyMachine?.state.isActive &&
 											candyMachine?.state.gatekeeper &&
 											wallet.publicKey &&
@@ -373,7 +357,7 @@ const Home = (props: HomeProps) => {
 													onMint={onMint}
 												/>
 											)}
-										</MintContainer>
+										</Box>
 									)}
 								</>
 							)}
@@ -398,4 +382,4 @@ const Home = (props: HomeProps) => {
 	);
 };
 
-export default Home;
+export default Minter;

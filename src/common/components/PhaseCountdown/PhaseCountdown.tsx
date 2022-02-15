@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
-import { Paper, Theme, createStyles, makeStyles } from "@mui/material";
 import Countdown from "react-countdown";
-import { CountdownRender, PhaseCountdownProps } from "./Countdown.types";
+import { Paper, Theme, createStyles, makeStyles } from "@mui/material";
+import { CountdownRender, PhaseCountdownProps } from "./PhaseCountdown.types";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-export const PhaseCountdown: FC<PhaseCountdownProps> = ({
+const PhaseCountdown: FC<PhaseCountdownProps> = ({
 	date,
 	status,
 	style,
@@ -124,3 +124,5 @@ export const PhaseCountdown: FC<PhaseCountdownProps> = ({
 		return null;
 	}
 };
+
+export default PhaseCountdown;

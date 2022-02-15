@@ -1,12 +1,6 @@
 import * as anchor from "@project-serum/anchor";
 import { PublicKey } from "@solana/web3.js";
 
-function date(date: string) {
-	let e = new Date(date);
-	let f = new anchor.BN(new Date(date).getTime() / 1000);
-	return f;
-}
-
 export interface WhitelistSettings {
 	enabled: boolean;
 	title: string;

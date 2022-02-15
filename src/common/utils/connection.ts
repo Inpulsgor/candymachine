@@ -1,3 +1,4 @@
+import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 import {
 	Keypair,
 	Commitment,
@@ -8,16 +9,10 @@ import {
 	Transaction,
 	TransactionInstruction,
 	TransactionSignature,
-	Blockhash,
-	FeeCalculator,
 } from "@solana/web3.js";
+import { BlockhashAndFeeCalculator, SequenceType } from "types/connection";
 
-import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
-
-interface BlockhashAndFeeCalculator {
-	blockhash: Blockhash;
-	feeCalculator: FeeCalculator;
-}
+const DEFAULT_TIMEOUT = 15000;
 
 export const getErrorForTransaction = async (
 	connection: Connection,
@@ -48,12 +43,6 @@ export const getErrorForTransaction = async (
 
 	return errors;
 };
-
-export enum SequenceType {
-	Sequential,
-	Parallel,
-	StopOnFailure,
-}
 
 export async function sendTransactionsWithManualRetry(
 	connection: Connection,
@@ -339,8 +328,6 @@ export const getUnixTs = () => {
 	return new Date().getTime() / 1000;
 };
 
-const DEFAULT_TIMEOUT = 15000;
-
 export async function sendSignedTransaction({
 	signedTransaction,
 	connection,
@@ -402,7 +389,9 @@ export async function sendSignedTransaction({
 			simulateResult = (
 				await simulateTransaction(connection, signedTransaction, "single")
 			).value;
-		} catch (e) {}
+		} catch (e) {
+			console.log(e);
+		}
 		if (simulateResult && simulateResult.err) {
 			if (simulateResult.logs) {
 				for (let i = simulateResult.logs.length - 1; i >= 0; --i) {
@@ -465,7 +454,7 @@ async function awaitTransactionSignatureConfirmation(
 		err: null,
 	};
 	let subId = 0;
-	status = await new Promise(async (resolve, reject) => {
+	status = await new Promise((resolve, reject) => {
 		setTimeout(() => {
 			if (done) {
 				return;
@@ -527,7 +516,7 @@ async function awaitTransactionSignatureConfirmation(
 					}
 				}
 			})();
-			await sleep(2000);
+			sleep(2000);
 		}
 	});
 

@@ -1,36 +1,24 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Button, CircularProgress } from "@mui/material";
-import { CandyMachineAccount } from "common/utils/candy-machine";
+import { CandyMachineAccount } from "common/utils/candymachine";
 import { GatewayStatus, useGateway } from "@civic/solana-gateway-react";
-import styled from "styled-components";
+import { toDate } from "common/utils/utils";
 import {
 	whitelistSettings,
 	publicSaleSettings,
 	mintPanic,
-} from "common/utils/user-settings";
-import { toDate } from "common/utils/utils";
+} from "common/components/UserSettings/UserSettings";
 
-export const CTAButton = styled(Button)`
-	width: 100%;
-	height: 60px;
-	margin-top: 10px;
-	margin-bottom: 5px;
-	background: linear-gradient(180deg, #604ae5 0%, #813eee 100%);
-	color: white;
-	font-size: 16px;
-	font-weight: bold;
-`; // add your styles here
-
-export const MintButton = ({
-	onMint,
-	candyMachine,
-
-	isMinting,
-}: {
+interface MintButtonProps {
 	onMint: () => Promise<void>;
 	candyMachine: CandyMachineAccount | undefined;
-
 	isMinting: boolean;
+}
+
+const MintButton: FC<MintButtonProps> = ({
+	onMint,
+	candyMachine,
+	isMinting,
 }) => {
 	const { requestGatewayToken, gatewayStatus } = useGateway();
 	const [clicked, setClicked] = useState(false);
@@ -91,8 +79,18 @@ export const MintButton = ({
 		}
 	}, [gatewayStatus, clicked, setClicked, onMint]);
 	return (
-		<CTAButton
+		<Button
 			className="minting-button"
+			sx={{
+				width: "100%",
+				height: "60px",
+				marginTop: "10px",
+				marginBottom: "5px",
+				background: "linear-gradient(180deg, #604ae5 0%, #813eee 100%)",
+				color: "white",
+				fontSize: "16px",
+				fontWeight: "bold",
+			}}
 			disabled={
 				candyMachine?.state.isSoldOut ||
 				isMinting ||
@@ -129,6 +127,8 @@ export const MintButton = ({
 					"MINT"
 				)}
 			</div>
-		</CTAButton>
+		</Button>
 	);
 };
+
+export default MintButton;

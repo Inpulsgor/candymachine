@@ -1,30 +1,16 @@
 import * as anchor from "@project-serum/anchor";
-import { PhaseCountdown } from "common/components/Countdown/Countdown";
-import { toDate } from "common/utils/utils";
-import { CandyMachineAccount } from "common/utils/candy-machine";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { Container, Grid, Typography } from "@mui/material";
+import { PhaseCountdown } from "common/components";
+import { toDate } from "common/utils/utils";
+import { CandyMachineAccount } from "common/utils/candymachine";
 import {
 	publicSaleSettings,
 	whitelistSettings,
 	welcomeSettings,
 	mintPanic,
-} from "common/utils/user-settings";
-import { Container, Grid, Typography } from "@mui/material";
-
-export enum Phase {
-	AnticipationPhase, // FL, AKA Phase 0
-	SetPrice, // FL, AKA Phase 1
-	GracePeriod, // FL, AKA Phase 2
-	Lottery, // FL
-	RaffleFinished, // FL, AKA Phase 3
-	WaitForCM, // FL,
-	Phase4,
-	MintOff,
-	WhiteListMint,
-	PublicMint,
-	Welcome,
-	Panic,
-}
+} from "common/components/UserSettings/UserSettings";
+import { Phase, PhaseHeaderProps } from "./PhaseHeader.types";
 
 export function getPhase(candyMachine: CandyMachineAccount | undefined): Phase {
 	const curr = new Date().getTime();
@@ -62,14 +48,15 @@ const Header = (props: {
 	countdownEnable?: boolean;
 }) => {
 	const { phaseName, desc, date, status, countdownEnable } = props;
+
 	return (
 		<>
 			{countdownEnable === true && (
 				<Grid
 					container
-					style={{ position: "absolute", top: "-30px", left: "0px" }}
+					sx={{ position: "absolute", top: "-30px", left: "0px" }}
 				>
-					<Container style={{ justifyContent: "center" }}>
+					<Container sx={{ justifyContent: "center" }}>
 						<PhaseCountdown
 							date={toDate(date)}
 							style={{ justifyContent: "center" }}
@@ -82,7 +69,7 @@ const Header = (props: {
 				<Grid>
 					<Typography
 						variant="h5"
-						style={{ fontWeight: 600, textAlign: "center" }}
+						sx={{ fontWeight: 600, textAlign: "center" }}
 						className="pb-2"
 					>
 						{phaseName}
@@ -98,19 +85,7 @@ const Header = (props: {
 	);
 };
 
-type PhaseHeaderProps = {
-	phase: Phase;
-
-	candyMachine?: CandyMachineAccount;
-
-	rpcUrl: string;
-};
-
-export const PhaseHeader = ({
-	phase,
-
-	candyMachine,
-}: PhaseHeaderProps) => {
+const PhaseHeader = ({ phase, candyMachine }: PhaseHeaderProps) => {
 	const wallet = useWallet();
 	console.log("D", candyMachine);
 	console.log("Wallet", wallet);
@@ -156,3 +131,5 @@ export const PhaseHeader = ({
 		</>
 	);
 };
+
+export default PhaseHeader;

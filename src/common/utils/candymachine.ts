@@ -1,16 +1,15 @@
 import * as anchor from "@project-serum/anchor";
-
 import { MintLayout, TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
 import { SystemProgram } from "@solana/web3.js";
-import { sendTransactions } from "./connection";
-
+import { sendTransactions } from "common/utils/connection";
+import { CandyMachineState } from "types/candymachine";
 import {
 	CIVIC,
 	getAtaForMint,
 	getNetworkExpire,
 	getNetworkToken,
 	SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
-} from "./utils";
+} from "common/utils/utils";
 
 export const CANDY_MACHINE_PROGRAM = new anchor.web3.PublicKey(
 	"cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ"
@@ -20,33 +19,9 @@ const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey(
 	"metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
 );
 
-interface CandyMachineState {
-	itemsAvailable: number;
-	itemsRedeemed: number;
-	itemsRemaining: number;
-	treasury: anchor.web3.PublicKey;
-	tokenMint: anchor.web3.PublicKey;
-	isSoldOut: boolean;
-	isActive: boolean;
-	goLiveDate: anchor.BN;
-	price: anchor.BN;
-	gatekeeper: null | {
-		expireOnUse: boolean;
-		gatekeeperNetwork: anchor.web3.PublicKey;
-	};
-	endSettings: null | [number, anchor.BN];
-	whitelistMintSettings: null | {
-		mode: any;
-		mint: anchor.web3.PublicKey;
-		presale: boolean;
-		discountPrice: null | anchor.BN;
-	};
-	hiddenSettings: null | {
-		name: string;
-		uri: string;
-		hash: Uint8Array;
-	};
-}
+const sleep = (ms: number): Promise<void> => {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+};
 
 export interface CandyMachineAccount {
 	id: anchor.web3.PublicKey;
@@ -68,7 +43,7 @@ export const awaitTransactionSignatureConfirmation = async (
 		err: null,
 	};
 	let subId = 0;
-	status = await new Promise(async (resolve, reject) => {
+	status = await new Promise((resolve, reject) => {
 		setTimeout(() => {
 			if (done) {
 				return;
@@ -106,7 +81,8 @@ export const awaitTransactionSignatureConfirmation = async (
 					}
 				}
 			})();
-			await sleep(2000);
+			sleep(2000);
+			// await sleep(2000);
 		}
 	});
 
@@ -454,8 +430,4 @@ export const mintOneToken = async (
 
 export const shortenAddress = (address: string, chars = 4): string => {
 	return `${address.slice(0, chars)}...${address.slice(-chars)}`;
-};
-
-const sleep = (ms: number): Promise<void> => {
-	return new Promise((resolve) => setTimeout(resolve, ms));
 };

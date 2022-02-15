@@ -1,6 +1,5 @@
+import React, { Component } from "react";
 import * as anchor from "@project-serum/anchor";
-import React from "react";
-
 import {
 	WhitelistSettings,
 	PublicSaleSettings,
@@ -108,7 +107,7 @@ export const whitelistSettings: WhitelistSettings = {
 	enableCustomHTML: false,
 };
 
-export class MintWhitelistCustomHTML extends React.Component {
+export class MintWhitelistCustomHTML extends Component {
 	render() {
 		return (
 			<div className="custom-mint-container">
@@ -143,7 +142,7 @@ export const publicSaleSettings: PublicSaleSettings = {
 	enableCustomHTML: false,
 };
 
-export class MintPublicSaleCustomHTML extends React.Component {
+export class MintPublicSaleCustomHTML extends Component {
 	render() {
 		return (
 			<div className="custom-mint-container">
