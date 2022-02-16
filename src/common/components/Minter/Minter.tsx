@@ -4,7 +4,14 @@ import { PublicKey } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 import { GatewayProvider } from "@civic/solana-gateway-react";
-import { Typography, Box, CardActions, CardContent } from "@mui/material";
+import {
+  Typography,
+  Box,
+  CardActions,
+  CardContent,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 
 import { AlertState } from "common/utils/utils";
 import { MintButton, PhaseHeader } from "common/components";
@@ -227,7 +234,7 @@ const Minter: FC<MinterProps> = ({
     if (!connected) return "loading";
     else if (connected && !showTotalMinted) return "";
 
-    return "loading";
+    return "";
   };
 
   return (
@@ -332,6 +339,19 @@ const Minter: FC<MinterProps> = ({
           {connected ? "connected" : "not connected"}
         </Typography>
       </CardContent>
+
+      <Snackbar
+        open={alertState.open}
+        autoHideDuration={6000}
+        onClose={() => setAlertState({ ...alertState, open: false })}
+      >
+        <Alert
+          onClose={() => setAlertState({ ...alertState, open: false })}
+          severity={alertState.severity}
+        >
+          {alertState.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

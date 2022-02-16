@@ -1,11 +1,14 @@
 const styles = {
   footer: {
-    maxHeight: "100px",
+    maxHeight: { md: "100px" },
     bgcolor: "custom.black",
   },
   toolbar: {
+    display: "flex",
+    justifyContent: { xs: "center", md: "start" },
+    flexWrap: { xs: "wrap", md: "nowrap" },
     height: "100%",
-    padding: "30px 0",
+    padding: { xs: "16px", md: "30px" },
   },
   copyright: {
     flexGrow: 1,

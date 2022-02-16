@@ -19,6 +19,7 @@ const AppBar: FC = () => {
     <AppHeading sx={styles.header} position="static">
       <Toolbar sx={styles.toolbar}>
         <IconButton
+          sx={styles.icon}
           onClick={handleClick}
           size="large"
           edge="start"

@@ -4,7 +4,11 @@ const styles = {
     borderBottom: "1px solid #221F20",
     boxShadow: "none",
   },
-  toolbar: { padding: "30px 0", justifyContent: "space-between" },
+  toolbar: {
+    padding: { md: "30px" },
+    justifyContent: "space-between",
+  },
+  icon: {},
 };
 
 export default styles;
