@@ -4,12 +4,17 @@ import { PublicKey } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 import { GatewayProvider } from "@civic/solana-gateway-react";
-import { Typography } from "@mui/material";
+import { Typography, Box, CardActions, CardContent } from "@mui/material";
 
 import { AlertState } from "common/utils/utils";
-import { MintButton } from "common/components";
-import { getPhase } from "common/components/PhaseHeader/PhaseHeader";
+import { MintButton, PhaseHeader } from "common/components";
+import { getPhase } from "common/utils/misc";
 import { Phase } from "common/components/PhaseHeader/PhaseHeader.types";
+import {
+  whitelistSettings,
+  publicSaleSettings,
+  welcomeSettings,
+} from "common/components/UserSettings/UserSettings";
 import { MinterProps } from "./Minter.types";
 import styles from "./Minter.styles";
 import {
@@ -29,8 +34,9 @@ const Minter: FC<MinterProps> = ({
   // const [yourSOLBalance, setYourSOLBalance] = useState<number | null>(null);
   const [whiteListTokenBalance, setWhiteListTokenBalance] = useState<number>(0);
   const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
-  const [mintingTotal, setMintingTotal] = useState<number | null>(null);
-  const [itemsAvailable, setItemsAvailable] = useState<number | null>(null);
+  const [mintingTotal, setMintingTotal] = useState<number | null>(0);
+  const [itemsAvailable, setItemsAvailable] = useState<number | null>(0);
+  const [showTotalMinted, setShowTotalMinted] = useState(false);
   const [pubKey, setPubKey] = useState<PublicKey>();
   const [candyMachine, setCandyMachine] = useState<CandyMachineAccount>();
   const [price, setPrice] = useState<number | null>(null);
@@ -53,6 +59,12 @@ const Minter: FC<MinterProps> = ({
       signTransaction,
     } as anchor.Wallet;
   }, [publicKey, signAllTransactions, signTransaction]);
+
+  useEffect(() => {
+    if (itemsAvailable && mintingTotal) {
+      if (mintingTotal > itemsAvailable / 2) setShowTotalMinted(true);
+    }
+  }, [itemsAvailable, mintingTotal]);
 
   useEffect(() => {
     (async () => {
@@ -201,59 +213,125 @@ const Minter: FC<MinterProps> = ({
     }
   };
 
+  const showMinted =
+    phase === Phase.WhiteListMint || phase === Phase.PublicMint;
+
+  const showPrice =
+    (phase === Phase.Welcome && welcomeSettings.showPrice) ||
+    phase === Phase.WhiteListMint ||
+    phase === Phase.PublicMint;
+
+  const availableTotal = !!itemsAvailable && !!mintingTotal && showTotalMinted;
+
+  const getVisibleTotal = () => {
+    if (!connected) return "loading";
+    else if (connected && !showTotalMinted) return "";
+
+    return "loading";
+  };
+
   return (
     <>
-      {(phase === Phase.PublicMint || Phase.WhiteListMint) && (
-        <>
-          {!connected ? (
-            <WalletDialogButton
-              sx={styles.walletBtn}
-              variant="contained"
-              fullWidth
-            >
-              <Typography sx={styles.walletBtnText} variant="body1">
-                Connect Wallet
-              </Typography>
-            </WalletDialogButton>
-          ) : (
-            <>
-              {candyMachine?.state.isActive &&
-              candyMachine?.state.gatekeeper &&
-              publicKey &&
-              signTransaction ? (
-                <GatewayProvider
-                  wallet={{
-                    publicKey:
-                      publicKey || new PublicKey(CANDY_MACHINE_PROGRAM),
-                    //@ts-ignore
-                    signTransaction,
-                  }}
-                  // // Replace with following when added
-                  // gatekeeperNetwork={candyMachine.state.gatekeeper_network}
-                  gatekeeperNetwork={
-                    candyMachine?.state?.gatekeeper?.gatekeeperNetwork
-                  } // This is the ignite (captcha) network
-                  /// Don't need this for mainnet
-                  clusterUrl={rpcUrl}
-                  options={{ autoShowModal: false }}
+      <CardActions sx={styles.actionsBox}>
+        <PhaseHeader
+          phase={phase}
+          candyMachine={candyMachine}
+          rpcUrl={rpcUrl}
+        />
+
+        {(phase === Phase.PublicMint || Phase.WhiteListMint) && (
+          <>
+            {phase === Phase.WhiteListMint && (
+              <Box className="card minting-info text-center">
+                {whiteListTokenBalance >= 0 ? (
+                  <Typography component="h2">
+                    {whiteListTokenBalance}
+                  </Typography>
+                ) : (
+                  <Box className="loading"></Box>
+                )}
+
+                <Typography>Mints to Claim</Typography>
+              </Box>
+            )}
+
+            <Box sx={styles.stats} style={{ marginLeft: 0 }}>
+              {showMinted && (
+                <Typography className={getVisibleTotal()}>
+                  {availableTotal && mintingTotal + " / " + itemsAvailable}
+                </Typography>
+              )}
+
+              {showPrice && (
+                <Typography
+                  sx={{ paddingRight: !price ? "10px" : "" }}
+                  className={!price ? "loading" : ""}
                 >
+                  {price ? `${price} Sol` : ""}
+                </Typography>
+              )}
+            </Box>
+
+            {!connected ? (
+              <WalletDialogButton
+                sx={styles.walletBtn}
+                variant="contained"
+                fullWidth
+              >
+                <Typography sx={styles.walletBtnText} variant="body1">
+                  Connect Wallet
+                </Typography>
+              </WalletDialogButton>
+            ) : (
+              <>
+                {candyMachine?.state.isActive &&
+                candyMachine?.state.gatekeeper &&
+                publicKey &&
+                signTransaction ? (
+                  <GatewayProvider
+                    wallet={{
+                      publicKey:
+                        publicKey || new PublicKey(CANDY_MACHINE_PROGRAM),
+                      //@ts-ignore
+                      signTransaction,
+                    }}
+                    gatekeeperNetwork={
+                      candyMachine?.state?.gatekeeper?.gatekeeperNetwork
+                    }
+                    clusterUrl={rpcUrl}
+                    options={{ autoShowModal: false }}
+                  >
+                    <MintButton
+                      candyMachine={candyMachine}
+                      isMinting={isMinting}
+                      onMint={onMint}
+                    />
+                  </GatewayProvider>
+                ) : (
                   <MintButton
                     candyMachine={candyMachine}
                     isMinting={isMinting}
                     onMint={onMint}
                   />
-                </GatewayProvider>
-              ) : (
-                <MintButton
-                  candyMachine={candyMachine}
-                  isMinting={isMinting}
-                  onMint={onMint}
-                />
-              )}
-            </>
-          )}
-        </>
-      )}
+                )}
+              </>
+            )}
+          </>
+        )}
+      </CardActions>
+
+      <CardContent sx={styles.contentBoxSecond}>
+        <Typography sx={styles.walletText} variant="body1" component="span">
+          Wallet
+        </Typography>
+        <Typography
+          sx={connected ? styles.connected : styles.notConnected}
+          variant="body1"
+          component="span"
+        >
+          {connected ? "connected" : "not connected"}
+        </Typography>
+      </CardContent>
     </>
   );
 };

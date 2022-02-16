@@ -1,51 +1,8 @@
 import { FC, useState } from "react";
 import Countdown from "react-countdown";
-import { Paper, Theme, createStyles } from "@mui/material";
-// import { makeStyles } from "@mui/material";
+import { Paper, Box } from "@mui/material";
 import { CountdownRender, PhaseCountdownProps } from "./PhaseCountdown.types";
-
-// const useStyles = makeStyles((theme: Theme) =>
-// 	createStyles({
-// 		root: {
-// 			display: "flex",
-// 			padding: theme.spacing(0),
-// 			"& > *": {
-// 				margin: theme.spacing(0.5),
-// 				marginRight: 0,
-// 				width: theme.spacing(6),
-// 				height: theme.spacing(6),
-// 				display: "flex",
-// 				flexDirection: "column",
-// 				alignContent: "center",
-// 				alignItems: "center",
-// 				justifyContent: "center",
-// 				background: "#384457",
-// 				color: "white",
-// 				borderRadius: 5,
-// 				fontSize: 10,
-// 			},
-// 		},
-// 		done: {
-// 			display: "flex",
-// 			margin: theme.spacing(1),
-// 			marginRight: 0,
-// 			padding: theme.spacing(1),
-// 			flexDirection: "column",
-// 			alignContent: "center",
-// 			alignItems: "center",
-// 			justifyContent: "center",
-// 			background: "#384457",
-// 			color: "white",
-// 			borderRadius: 5,
-// 			fontWeight: "bold",
-// 			fontSize: 18,
-// 		},
-// 		item: {
-// 			fontWeight: "bold",
-// 			fontSize: 18,
-// 		},
-// 	})
-// );
+import styles from "./PhaseCountdown.styles";
 
 const PhaseCountdown: FC<PhaseCountdownProps> = ({
   date,
@@ -55,8 +12,6 @@ const PhaseCountdown: FC<PhaseCountdownProps> = ({
   end,
   onComplete,
 }) => {
-  // const classes = useStyles();
-
   const [isFixed, setIsFixed] = useState(
     start && end && date ? start.getTime() - Date.now() < 0 : false
   );
@@ -69,35 +24,42 @@ const PhaseCountdown: FC<PhaseCountdownProps> = ({
     completed,
   }: CountdownRender) => {
     hours += days * 24;
+
     if (completed) {
-      return status ? <span className={"classes.done"}>{status}</span> : null;
+      return status ? (
+        <Box sx={styles.done} component="span">
+          {status}
+        </Box>
+      ) : null;
     } else {
       return (
-        <div className={"classes.root"} style={style}>
+        <Box sx={styles.root} style={style}>
           {isFixed && (
             <Paper elevation={0}>
-              <span className={"classes.item"}>+</span>
+              <Box sx={styles.item} component="span">
+                +
+              </Box>
             </Paper>
           )}
           <Paper elevation={0}>
-            <span className={"classes.item"}>
+            <Box sx={styles.item} component="span">
               {hours < 10 ? `0${hours}` : hours}
-            </span>
-            <span>hrs</span>
+            </Box>
+            <Box component="span">hrs</Box>
           </Paper>
           <Paper elevation={0}>
-            <span className={"classes.item"}>
+            <Box sx={styles.item} component="span">
               {minutes < 10 ? `0${minutes}` : minutes}
-            </span>
-            <span>mins</span>
+            </Box>
+            <Box component="span">mins</Box>
           </Paper>
           <Paper elevation={0}>
-            <span className={"classes.item"}>
+            <Box sx={styles.item} component="span">
               {seconds < 10 ? `0${seconds}` : seconds}
-            </span>
-            <span>secs</span>
+            </Box>
+            <Box component="span">secs</Box>
           </Paper>
-        </div>
+        </Box>
       );
     }
   };

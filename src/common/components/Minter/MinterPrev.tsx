@@ -15,7 +15,7 @@ import {
 import { CandyMachineAccount } from "types/candymachine";
 
 import { MintButton, PhaseHeader } from "common/components";
-import { getPhase } from "common/components/PhaseHeader/PhaseHeader";
+import { getPhase } from "common/utils/misc";
 import { Phase } from "common/components/PhaseHeader/PhaseHeader.types";
 import { AlertState } from "common/utils/utils";
 import {

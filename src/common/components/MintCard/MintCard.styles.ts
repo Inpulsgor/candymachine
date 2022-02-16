@@ -103,7 +103,7 @@ const styles = {
     color: "#81c784",
   },
   description: {
-    mt: "48px",
+    // mt: "48px",
     textAlign: "center",
     padding: "0 30px",
     lineHeight: "20px",

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import * as anchor from "@project-serum/anchor";
 import {
   WhitelistSettings,
@@ -65,7 +65,7 @@ export const welcomeSettings: WelcomeSettings = {
   enableCustomHTML: false,
 };
 
-export class MintWelcomeCustomHTML extends React.Component {
+export class MintWelcomeCustomHTML extends Component {
   render() {
     return (
       <div className="custom-mint-container">

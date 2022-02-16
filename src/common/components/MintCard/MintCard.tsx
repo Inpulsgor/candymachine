@@ -1,11 +1,9 @@
-import { FC, useRef } from "react";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { FC } from "react";
 import {
   Box,
   Card,
   CardMedia,
   CardContent,
-  CardActions,
   Typography,
   Tooltip,
   Button,
@@ -19,14 +17,18 @@ import { MintCardProps } from "./MintCard.types";
 import styles from "./MintCard.styles";
 
 const MintCard: FC<MintCardProps> = () => {
-  const { connected } = useWallet();
-  const walletConnected = connected ? "connected" : "not connected";
-  const vidRef = useRef(null);
-
   return (
     <Card sx={styles.card}>
       <Box sx={styles.mediaBox}>
-        <CardMedia sx={styles.media} component="video" src={video} autoPlay />
+        <CardMedia
+          sx={styles.media}
+          component="video"
+          src={video}
+          autoPlay
+          muted
+          loop
+          preload="auto"
+        />
       </Box>
 
       <CardContent sx={styles.contentBox}>
@@ -51,21 +53,9 @@ const MintCard: FC<MintCardProps> = () => {
         </Tooltip>
       </CardContent>
 
-      <CardActions sx={styles.actionsBox}>
-        <Wallet />
-      </CardActions>
+      <Wallet />
 
       <CardContent sx={styles.contentBoxSecond}>
-        <Typography sx={styles.walletText} variant="body1" component="span">
-          Wallet
-        </Typography>
-        <Typography
-          sx={connected ? styles.connected : styles.notConnected}
-          variant="body1"
-          component="span"
-        >
-          {walletConnected}
-        </Typography>
         <Typography sx={styles.description} variant="body2" component="p">
           If you have any issues please reach out to a member of the team on
           Discord. We’ll be happy to help.
