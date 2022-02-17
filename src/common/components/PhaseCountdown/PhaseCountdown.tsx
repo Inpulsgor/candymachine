@@ -25,9 +25,6 @@ const PhaseCountdown: FC<PhaseCountdownProps> = ({
   }: CountdownRender) => {
     hours += days * 24;
 
-    console.log("completed", completed);
-    console.log("status", status);
-
     if (completed) {
       return status ? (
         <Box sx={styles.done} component="span">
