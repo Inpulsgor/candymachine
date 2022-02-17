@@ -9,10 +9,10 @@ const App: FC = () => {
   return (
     <Suspense fallback={<Loader isLoading />}>
       <Routes>
-        {/* <Route path={ROUTES.HOME} element={<AppLayout />}> */}
-        <Route index element={<HomePage />} />
-        {/* <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} /> */}
-        {/* </Route> */}
+        <Route path={ROUTES.HOME} element={<AppLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </Suspense>
   );
