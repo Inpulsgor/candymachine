@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { FC } from "react";
 import Header from "./Header/Header";
 import { Phase, PhaseHeaderProps } from "./PhaseHeader.types";
 import {
@@ -9,14 +8,7 @@ import {
   mintPanic,
 } from "common/components/UserSettings/UserSettings";
 
-const PhaseHeader = ({ phase, candyMachine }: PhaseHeaderProps) => {
-  const wallet = useWallet();
-
-  useEffect(() => {
-    console.log("D", candyMachine);
-    console.log("wallet", wallet);
-  }, [wallet, candyMachine]);
-
+const PhaseHeader: FC<PhaseHeaderProps> = ({ phase }) => {
   return (
     <>
       {phase === Phase.Panic && (

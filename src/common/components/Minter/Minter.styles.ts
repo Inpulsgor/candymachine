@@ -1,3 +1,5 @@
+import { Theme } from "@mui/material";
+
 const styles = {
   actionsBox: {
     display: "flex",
@@ -32,6 +34,10 @@ const styles = {
     width: "100%",
     justifyContent: "space-between",
     margin: "0 0 10px",
+  },
+  alert: {
+    // backgroundColor: (theme: Theme) => theme.palette.success.main,
+    // color: "#fff",
   },
 };
 

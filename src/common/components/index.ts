@@ -7,6 +7,3 @@ export { default as MintButton } from "./MintButton/MintButton";
 export { default as Minter } from "./Minter/Minter";
 export { default as PhaseHeader } from "./PhaseHeader/PhaseHeader";
 export { default as Wallet } from "./Wallet/Wallet";
-
-// export { default as Minter } from "./Minter/MinterPrev";
-// export { default as MintButton } from "./MintButton/MintButtonPrev";

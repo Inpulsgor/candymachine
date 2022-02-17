@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Button, Typography, CircularProgress } from "@mui/material";
 import { GatewayStatus, useGateway } from "@civic/solana-gateway-react";
-import { toDate } from "common/utils/utils";
+import { toDate } from "common/utils/misc";
 import {
   whitelistSettings,
   publicSaleSettings,
@@ -79,17 +79,17 @@ const MintButton: FC<MintButtonProps> = ({
   };
 
   let WhitelistMintActive = whiteListSaleCheck();
-  console.log("is Whitelist Sale Active? " + whiteListSaleCheck());
+  // console.log("is Whitelist Sale Active? " + whiteListSaleCheck());
 
   let PublicMintActive = publicSaleCheck();
-  console.log("is public sale live? " + publicSaleCheck());
+  // console.log("is public sale live? " + publicSaleCheck());
 
-  console.log(
-    candyMachine?.state.isSoldOut,
-    isMinting,
-    WhitelistMintActive || PublicMintActive,
-    !candyMachine?.state.isActive
-  );
+  // console.log(
+  //   candyMachine?.state.isSoldOut,
+  //   isMinting,
+  //   WhitelistMintActive || PublicMintActive,
+  //   !candyMachine?.state.isActive
+  // );
 
   const isDisabled =
     candyMachine?.state.isSoldOut ||
@@ -108,7 +108,7 @@ const MintButton: FC<MintButtonProps> = ({
         {candyMachine?.state.isSoldOut ? (
           "Sold out"
         ) : isMinting ? (
-          <CircularProgress />
+          <CircularProgress size={30} />
         ) : mintPanic.enabled ? (
           "Mint Paused"
         ) : (

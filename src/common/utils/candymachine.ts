@@ -1,15 +1,16 @@
 import * as anchor from "@project-serum/anchor";
 import { MintLayout, TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
 import { SystemProgram } from "@solana/web3.js";
-import { sendTransactions } from "common/utils/connection";
-import { CandyMachineState, CandyMachineAccount } from "types/candymachine";
+import { sendTransactions } from "./connection";
+import { CandyMachineAccount } from "types/candymachine";
+
 import {
   CIVIC,
   getAtaForMint,
   getNetworkExpire,
   getNetworkToken,
   SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID,
-} from "common/utils/utils";
+} from "./misc";
 
 export const CANDY_MACHINE_PROGRAM = new anchor.web3.PublicKey(
   "cndy3Z4yapfJBmL3ShUp5exZKqR3z33thTzeNMm2gRZ"
@@ -18,10 +19,6 @@ export const CANDY_MACHINE_PROGRAM = new anchor.web3.PublicKey(
 const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey(
   "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
 );
-
-const sleep = (ms: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
 
 export const awaitTransactionSignatureConfirmation = async (
   txid: anchor.web3.TransactionSignature,
@@ -37,7 +34,8 @@ export const awaitTransactionSignatureConfirmation = async (
     err: null,
   };
   let subId = 0;
-  status = await new Promise((resolve, reject) => {
+  // eslint-disable-next-line
+  status = await new Promise(async (resolve, reject) => {
     setTimeout(() => {
       if (done) {
         return;
@@ -75,8 +73,7 @@ export const awaitTransactionSignatureConfirmation = async (
           }
         }
       })();
-      sleep(2000);
-      // await sleep(2000);
+      await sleep(2000);
     }
   });
 
@@ -124,14 +121,16 @@ export const getCandyMachineState = async (
   candyMachineId: anchor.web3.PublicKey,
   connection: anchor.web3.Connection
 ): Promise<CandyMachineAccount> => {
-  const anch: any = anchor;
-
   const provider = new anchor.Provider(connection, anchorWallet, {
     preflightCommitment: "recent",
   });
-
-  const idl: any = await anch.Program.fetchIdl(CANDY_MACHINE_PROGRAM, provider);
-  const program = new anch.Program(idl, CANDY_MACHINE_PROGRAM, provider);
+  // eslint-disable-next-line
+  const idl: any = await anchor.Program.fetchIdl(
+    CANDY_MACHINE_PROGRAM,
+    provider
+  );
+  // eslint-disable-next-line
+  const program = new anchor.Program(idl, CANDY_MACHINE_PROGRAM, provider);
 
   const state: any = await program.account.candyMachine.fetch(candyMachineId);
   const itemsAvailable = state.data.itemsAvailable.toNumber();
@@ -422,4 +421,8 @@ export const mintOneToken = async (
 
 export const shortenAddress = (address: string, chars = 4): string => {
   return `${address.slice(0, chars)}...${address.slice(-chars)}`;
+};
+
+const sleep = (ms: number): Promise<void> => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 };

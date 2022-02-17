@@ -13,24 +13,25 @@ import {
   Alert,
 } from "@mui/material";
 
-import { AlertState } from "common/utils/utils";
 import { MintButton, PhaseHeader } from "common/components";
-import { getPhase } from "common/utils/misc";
 import { Phase } from "common/components/PhaseHeader/PhaseHeader.types";
-import {
-  whitelistSettings,
-  publicSaleSettings,
-  welcomeSettings,
-} from "common/components/UserSettings/UserSettings";
-import { MinterProps } from "./Minter.types";
-import styles from "./Minter.styles";
+import { welcomeSettings } from "common/components/UserSettings/UserSettings";
+import { MinterProps, AlertState } from "./Minter.types";
 import {
   awaitTransactionSignatureConfirmation,
   CANDY_MACHINE_PROGRAM,
   getCandyMachineState,
   mintOneToken,
 } from "common/utils/candymachine";
+import { getPhase } from "common/utils/misc";
 import { CandyMachineAccount } from "types/candymachine";
+import styles from "./Minter.styles";
+
+const initialAlersState = {
+  open: false,
+  message: "",
+  severity: undefined,
+};
 
 const Minter: FC<MinterProps> = ({
   connection,
@@ -47,11 +48,7 @@ const Minter: FC<MinterProps> = ({
   const [pubKey, setPubKey] = useState<PublicKey>();
   const [candyMachine, setCandyMachine] = useState<CandyMachineAccount>();
   const [price, setPrice] = useState<number | null>(null);
-  const [alertState, setAlertState] = useState<AlertState>({
-    open: false,
-    message: "",
-    severity: undefined,
-  });
+  const [alertState, setAlertState] = useState<AlertState>(initialAlersState);
   const { publicKey, signAllTransactions, signTransaction, connected } =
     useWallet();
   const phase = getPhase(candyMachine);
@@ -111,10 +108,10 @@ const Minter: FC<MinterProps> = ({
 
   useEffect(() => {
     const getTokenAmount = async () => {
-      if (publicKey && candyMachine?.state.whitelistMintSettings?.mint) {
+      if (pubKey && candyMachine?.state.whitelistMintSettings?.mint) {
         try {
           const tokenAmount = await connection.getParsedTokenAccountsByOwner(
-            publicKey,
+            pubKey,
             {
               mint: candyMachine?.state.whitelistMintSettings?.mint,
             }
@@ -149,7 +146,7 @@ const Minter: FC<MinterProps> = ({
     } else {
       setMintingTotal(candyMachine?.state.itemsRedeemed);
     }
-  }, [candyMachine, publicKey, connection]);
+  }, [candyMachine, pubKey, connection]);
 
   const onMint = async () => {
     try {
@@ -157,8 +154,8 @@ const Minter: FC<MinterProps> = ({
       document.getElementById("#identity")?.click();
       if (connected && candyMachine?.program && publicKey) {
         const mintTxId = (await mintOneToken(candyMachine, publicKey))[0];
-
         let status: any = { err: true };
+
         if (mintTxId) {
           status = await awaitTransactionSignatureConfirmation(
             mintTxId,
@@ -178,8 +175,9 @@ const Minter: FC<MinterProps> = ({
 
           setMintingTotal(mintingTotal! + 1);
 
-          if (whiteListTokenBalance && whiteListTokenBalance > 0)
+          if (whiteListTokenBalance && whiteListTokenBalance > 0) {
             setWhiteListTokenBalance(whiteListTokenBalance - 1);
+          }
         } else {
           setAlertState({
             open: true,
@@ -195,7 +193,7 @@ const Minter: FC<MinterProps> = ({
         if (!error.message) {
           message = "Transaction Timeout! Please try again.";
         } else if (error.message.indexOf("0x138")) {
-          message = "";
+          console.log(error.message);
         } else if (error.message.indexOf("0x137")) {
           message = `SOLD OUT!`;
         } else if (error.message.indexOf("0x135")) {
@@ -236,6 +234,8 @@ const Minter: FC<MinterProps> = ({
 
     return "";
   };
+
+  const onAlertClose = () => setAlertState(initialAlersState);
 
   return (
     <>
@@ -341,13 +341,16 @@ const Minter: FC<MinterProps> = ({
       </CardContent>
 
       <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={alertState.open}
         autoHideDuration={6000}
-        onClose={() => setAlertState({ ...alertState, open: false })}
+        onClose={onAlertClose}
       >
         <Alert
-          onClose={() => setAlertState({ ...alertState, open: false })}
+          sx={styles.alert}
+          onClose={onAlertClose}
           severity={alertState.severity}
+          variant="filled"
         >
           {alertState.message}
         </Alert>

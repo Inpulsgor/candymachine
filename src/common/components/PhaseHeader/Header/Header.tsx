@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Container, Grid, Typography } from "@mui/material";
 import { PhaseCountdown } from "common/components";
-import { toDate } from "common/utils/utils";
+import { toDate } from "common/utils/misc";
 import { HeaderProps } from "./Header.types";
 import styles from "./Header.styles";
 

@@ -14,6 +14,7 @@ import {
 import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 import { clusterApiUrl } from "@solana/web3.js";
 import { Minter } from "common/components";
+// import Minter from "old/Minter";
 
 const candyMachineId = process.env.REACT_APP_CANDY_MACHINE_ID
   ? new anchor.web3.PublicKey(process.env.REACT_APP_CANDY_MACHINE_ID)

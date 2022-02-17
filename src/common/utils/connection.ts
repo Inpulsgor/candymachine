@@ -1,4 +1,3 @@
-import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 import {
   Keypair,
   Commitment,
@@ -10,6 +9,7 @@ import {
   TransactionInstruction,
   TransactionSignature,
 } from "@solana/web3.js";
+import { WalletNotConnectedError } from "@solana/wallet-adapter-base";
 import { BlockhashAndFeeCalculator, SequenceType } from "types/connection";
 
 const DEFAULT_TIMEOUT = 15000;
@@ -454,7 +454,8 @@ async function awaitTransactionSignatureConfirmation(
     err: null,
   };
   let subId = 0;
-  status = await new Promise((resolve, reject) => {
+  // eslint-disable-next-line
+  status = await new Promise(async (resolve, reject) => {
     setTimeout(() => {
       if (done) {
         return;
@@ -516,7 +517,7 @@ async function awaitTransactionSignatureConfirmation(
           }
         }
       })();
-      sleep(2000);
+      await sleep(2000);
     }
   });
 
@@ -527,7 +528,6 @@ async function awaitTransactionSignatureConfirmation(
   console.log("Returning status", status);
   return status;
 }
-
 export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
