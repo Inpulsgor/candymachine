@@ -4,4 +4,5 @@ export interface AccordionProps {
   link: string;
   linkText: string;
   notice: string;
+  id: number;
 }

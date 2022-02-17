@@ -5,6 +5,7 @@
         "title": "FAQs",
         "items": [
           {
+            "id": 1,
             "title": "How do i mint",
             "description": "Connect your phantom wallet. Once connected a page with all the details for the mint will come up. Check that you have enough SOL in your wallet to purchase the NFT (we recommend 1.1SOL or more). Make sure you also have a minting token if minting in Phase 1 &2. Once you’ve checked the above, then simply click the mint button, approve the transaction. Very quickly you should see a message pop up confirming a successful mint. Check your wallet and you should see your NFT! Congratulations on successfully minting a CPRO NFT. For an in-depth guide please check the below video, showing the whole mint process :)",
             "link": "https://www.youtube.com/",
@@ -12,6 +13,7 @@
             "notice": ""
           },
           {
+            "id": 2,
             "title": "Why is Phase 1 limited to one mint per member",
             "description": "We’ve limited Phase 1 to one mint per member to ensure the NFT collection cannot sell out too quickly. We want every single Pro member to have the chance to mint an NFT. This makes the mint 100% fair. In Phase 2, you’ll get the chance to mint many more!",
             "link": "",
@@ -19,14 +21,16 @@
             "notice": "TDLR: **ONLY CPRO MEMBERS CAN MINT FOR THE FIRST 48-HOURS**"
           },
           {
-            "title": "How do i mint",
+            "id": 3,
+            "title": "How much does one Diamond Hands NFT cost?",
             "description": "",
             "link": "",
             "linkText": "",
             "notice": "** 1 SOL"
           },
           {
-            "title": "How do i mint",
+            "id": 4,
+            "title": "Who’s behind Diamond Hands? ",
             "description": "The Diamond Hands NFT project is backed by Cryptonary’s team of leading industry experts and one of the biggest established communities in the crypto space.",
             "link": "",
             "linkText": "",

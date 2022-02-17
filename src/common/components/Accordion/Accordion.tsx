@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import {
   Link,
   Typography,
@@ -6,7 +6,7 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from "@mui/material";
-import { Add as AddIcon } from "@mui/icons-material";
+import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
 import { AccordionProps } from "./Accordion.types";
 import { ReactComponent as PlayIcon } from "assets/icons/play.svg";
 import styles from "./Accordion.styles";
@@ -17,10 +17,25 @@ const Accordion: FC<AccordionProps> = ({
   link,
   linkText,
   notice,
+  id,
 }) => {
+  const [expanded, setExpanded] = useState<number>(0);
+
+  const handleChange = (value: number) => {
+    expanded === value ? setExpanded(0) : setExpanded(value);
+  };
+
   return (
-    <AccordionItem sx={styles.item}>
-      <AccordionSummary expandIcon={<AddIcon sx={styles.icon} />}>
+    <AccordionItem sx={styles.item} onChange={() => handleChange(id)}>
+      <AccordionSummary
+        expandIcon={
+          expanded === id ? (
+            <RemoveIcon sx={styles.icon} />
+          ) : (
+            <AddIcon sx={styles.icon} />
+          )
+        }
+      >
         <Typography variant="body1">{title}</Typography>
       </AccordionSummary>
       <AccordionDetails>
