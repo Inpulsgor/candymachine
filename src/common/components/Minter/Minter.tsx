@@ -251,11 +251,11 @@ const Minter: FC<MinterProps> = ({
             {phase === Phase.WhiteListMint && (
               <Box className="card minting-info text-center">
                 {whiteListTokenBalance >= 0 ? (
-                  <Typography component="h2">
+                  <Typography variant="h2" component="h2">
                     {whiteListTokenBalance}
                   </Typography>
                 ) : (
-                  <Box className="loading"></Box>
+                  <Box sx={{ mb: "16px" }} className="loading"></Box>
                 )}
 
                 <Typography>Mints to Claim</Typography>
@@ -347,7 +347,6 @@ const Minter: FC<MinterProps> = ({
         onClose={onAlertClose}
       >
         <Alert
-          sx={styles.alert}
           onClose={onAlertClose}
           severity={alertState.severity}
           variant="filled"

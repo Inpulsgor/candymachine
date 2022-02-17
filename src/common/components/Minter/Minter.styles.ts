@@ -2,6 +2,7 @@ import { Theme } from "@mui/material";
 
 const styles = {
   actionsBox: {
+    position: "relative",
     display: "flex",
     flexDirection: "column",
     bgcolor: "success.main",
@@ -35,9 +36,16 @@ const styles = {
     justifyContent: "space-between",
     margin: "0 0 10px",
   },
-  alert: {
-    // backgroundColor: (theme: Theme) => theme.palette.success.main,
-    // color: "#fff",
+  claim: {
+    bgcolor: "#414141",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "20px",
+    padding: "30px",
+    textAlign: "center",
+    borderRadius: "10px",
   },
 };
 

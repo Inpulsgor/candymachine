@@ -25,11 +25,7 @@ const Header: FC<HeaderProps> = ({
           </Container>
         </Grid>
       )}
-      <Grid
-        sx={{ flexDirection: "column", gap: "20px", mb: "20px" }}
-        container
-        alignItems="center"
-      >
+      <Grid sx={styles.phaseNameBox} container alignItems="center">
         <Typography sx={styles.phaseName} variant="h3">
           {phaseName}
         </Typography>

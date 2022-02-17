@@ -25,6 +25,9 @@ const PhaseCountdown: FC<PhaseCountdownProps> = ({
   }: CountdownRender) => {
     hours += days * 24;
 
+    console.log("completed", completed);
+    console.log("status", status);
+
     if (completed) {
       return status ? (
         <Box sx={styles.done} component="span">
@@ -35,25 +38,25 @@ const PhaseCountdown: FC<PhaseCountdownProps> = ({
       return (
         <Box sx={styles.root} style={style}>
           {isFixed && (
-            <Paper elevation={0}>
+            <Paper sx={styles.paper} elevation={0}>
               <Box sx={styles.item} component="span">
                 +
               </Box>
             </Paper>
           )}
-          <Paper elevation={0}>
+          <Paper sx={styles.paper} elevation={0}>
             <Box sx={styles.item} component="span">
               {hours < 10 ? `0${hours}` : hours}
             </Box>
             <Box component="span">hrs</Box>
           </Paper>
-          <Paper elevation={0}>
+          <Paper sx={styles.paper} elevation={0}>
             <Box sx={styles.item} component="span">
               {minutes < 10 ? `0${minutes}` : minutes}
             </Box>
             <Box component="span">mins</Box>
           </Paper>
-          <Paper elevation={0}>
+          <Paper sx={styles.paper} elevation={0}>
             <Box sx={styles.item} component="span">
               {seconds < 10 ? `0${seconds}` : seconds}
             </Box>
