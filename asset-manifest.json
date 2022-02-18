@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/candymachine/static/css/main.00316c9c.css",
-    "main.js": "/candymachine/static/js/main.8d456317.js",
+    "main.js": "/candymachine/static/js/main.445995d7.js",
     "static/js/431.a76517a8.chunk.js": "/candymachine/static/js/431.a76517a8.chunk.js",
     "static/js/126.c6c3957e.chunk.js": "/candymachine/static/js/126.c6c3957e.chunk.js",
     "static/js/489.57296c56.chunk.js": "/candymachine/static/js/489.57296c56.chunk.js",
@@ -17,7 +17,7 @@
     "static/media/diamond.svg": "/candymachine/static/media/diamond.96b66660d5ca077ca1f3c99cc5992375.svg",
     "static/media/play.svg": "/candymachine/static/media/play.af9b12ba2ffe0954cf96cb8484dec2f7.svg",
     "main.00316c9c.css.map": "/candymachine/static/css/main.00316c9c.css.map",
-    "main.8d456317.js.map": "/candymachine/static/js/main.8d456317.js.map",
+    "main.445995d7.js.map": "/candymachine/static/js/main.445995d7.js.map",
     "431.a76517a8.chunk.js.map": "/candymachine/static/js/431.a76517a8.chunk.js.map",
     "126.c6c3957e.chunk.js.map": "/candymachine/static/js/126.c6c3957e.chunk.js.map",
     "489.57296c56.chunk.js.map": "/candymachine/static/js/489.57296c56.chunk.js.map",
@@ -29,6 +29,6 @@
   },
   "entrypoints": [
     "static/css/main.00316c9c.css",
-    "static/js/main.8d456317.js"
+    "static/js/main.445995d7.js"
   ]
 }
