@@ -23,7 +23,11 @@ import {
   getCandyMachineState,
   mintOneToken,
 } from "common/utils/candymachine";
-import { getPhase } from "common/utils/misc";
+import {
+  getPhase,
+  TOKEN_MINT_ADDRESS,
+  findAssociatedTokenAddress,
+} from "common/utils/misc";
 import { CandyMachineAccount } from "types/candymachine";
 import styles from "./Minter.styles";
 
@@ -63,6 +67,16 @@ const Minter: FC<MinterProps> = ({
       signTransaction,
     } as anchor.Wallet;
   }, [publicKey, signAllTransactions, signTransaction]);
+
+  useEffect(() => {
+    if (publicKey) {
+      findAssociatedTokenAddress(publicKey, TOKEN_MINT_ADDRESS).then(
+        (response) => {
+          console.log("findAssociatedTokenAddress response", response);
+        }
+      );
+    }
+  }, [publicKey]);
 
   useEffect(() => {
     if (itemsAvailable && mintingTotal) {

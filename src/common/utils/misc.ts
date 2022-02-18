@@ -1,6 +1,6 @@
 import * as anchor from "@project-serum/anchor";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { SystemProgram } from "@solana/web3.js";
+import { SystemProgram, PublicKey } from "@solana/web3.js";
 import {
   LAMPORTS_PER_SOL,
   SYSVAR_RENT_PUBKEY,
@@ -24,6 +24,10 @@ export const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID =
 
 export const CIVIC = new anchor.web3.PublicKey(
   "gatem74V238djXdzWnJf94Wo1DcnuGkfijbf3AuBhfs"
+);
+
+export const TOKEN_MINT_ADDRESS = new anchor.web3.PublicKey(
+  "9SnPTXx2CU1vuSXrbEfqKJRLDEZKXiD9kjE2pLwmk2Tx"
 );
 
 export const toDate = (value?: anchor.BN) => {
@@ -198,3 +202,19 @@ export const getPhase = (
     return Phase.Welcome;
   }
 };
+
+export async function findAssociatedTokenAddress(
+  walletAddress: PublicKey,
+  tokenMintAddress: PublicKey
+): Promise<PublicKey> {
+  return (
+    await PublicKey.findProgramAddress(
+      [
+        walletAddress.toBuffer(),
+        TOKEN_PROGRAM_ID.toBuffer(),
+        tokenMintAddress.toBuffer(),
+      ],
+      SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
+    )
+  )[0];
+}
