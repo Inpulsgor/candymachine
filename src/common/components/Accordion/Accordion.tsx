@@ -14,6 +14,7 @@ import styles from './Accordion.styles';
 const Accordion: FC<AccordionProps> = ({
   title,
   description,
+  descriptionSecond,
   link,
   linkText,
   notice,
@@ -38,14 +39,24 @@ const Accordion: FC<AccordionProps> = ({
       >
         <Typography variant="body1">{title}</Typography>
       </AccordionSummary>
-      <AccordionDetails>
+      <AccordionDetails
+        sx={expanded === id ? styles.detailsExpanded : styles.details}
+      >
         {description && (
           <Typography sx={styles.description} variant="body2">
             {description}
           </Typography>
         )}
+        {descriptionSecond && (
+          <Typography sx={styles.descriptionSecond} variant="body2">
+            {descriptionSecond}
+          </Typography>
+        )}
         {notice && (
-          <Typography sx={styles.notice} variant="body2">
+          <Typography
+            sx={{ ...styles.notice, mt: description ? '16px' : '0' }}
+            variant="body2"
+          >
             {notice}
           </Typography>
         )}

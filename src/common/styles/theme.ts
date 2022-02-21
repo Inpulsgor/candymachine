@@ -69,6 +69,33 @@ let theme: Theme = createTheme({
       xl: 1200,
     },
   },
+  components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: '#E4E4E4',
+          color: '#141414',
+          padding: '16px',
+          width: '100%',
+          maxWidth: '330px',
+        },
+        tooltipPlacementTop: {
+          backgroundColor: '#E4E4E4',
+        },
+        arrow: {
+          color: '#E4E4E4',
+        },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          paddingLeft: '24px',
+          paddingRight: '24px',
+        },
+      },
+    },
+  },
 });
 
 theme = responsiveFontSizes(theme);

@@ -1,8 +1,9 @@
 const styles = {
-  item: { bgcolor: 'success.main' },
+  item: { bgcolor: 'success.main', marginBottom: '8px', borderRadius: '4px' },
   icon: { color: 'custom.white' },
   title: {},
   description: { color: '#A2A2A2' },
+  descriptionSecond: { color: '#A2A2A2' },
   notice: { color: '#A2A2A2' },
   link: {
     display: 'flex',
@@ -17,6 +18,16 @@ const styles = {
   },
   linkText: {
     ml: '6px',
+  },
+  detailsExpanded: {
+    paddingTop: '0',
+    paddingLeft: '24px',
+    paddingRight: '24px',
+    paddingBottom: '24px',
+  },
+  details: {
+    paddingLeft: '24px',
+    paddingRight: '24px',
   },
 };
 

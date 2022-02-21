@@ -350,7 +350,7 @@ const Minter: FC<MinterProps> = ({
           variant="body1"
           component="span"
         >
-          {connected ? 'connected' : 'not connected'}
+          {connected ? 'connected' : 'Not connected'}
         </Typography>
       </CardContent>
 

@@ -41,12 +41,17 @@ const MintCard: FC<MintCardProps> = () => {
         </Box>
 
         <Tooltip
+          arrow
           sx={styles.tooltip}
-          title={<Typography variant="body2">Some tooltip</Typography>}
+          title={
+            <Typography sx={styles.tooltipText} variant="body2">
+              Every Pro member can mint ONE NFT only
+            </Typography>
+          }
           placement="top"
         >
           <Button sx={styles.tooltipBtn} variant="outlined" color="info">
-            <Typography sx={styles.tooltipText} variant="body2">
+            <Typography sx={styles.tooltipBtnText} variant="body2">
               Phase 1
             </Typography>
             <InfoIcon sx={styles.tooltipIcon} />

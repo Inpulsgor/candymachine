@@ -12,17 +12,28 @@ const FAQs: FC = () => {
     <Box sx={styles.faq}>
       <Typography sx={styles.title}>{faqTitle}</Typography>
 
-      {faqContent.map(({ title, description, link, linkText, notice, id }) => (
-        <Accordion
-          key={id}
-          id={id}
-          title={title}
-          description={description}
-          link={link}
-          linkText={linkText}
-          notice={notice}
-        />
-      ))}
+      {faqContent.map(
+        ({
+          title,
+          description,
+          descriptionSecond,
+          link,
+          linkText,
+          notice,
+          id,
+        }) => (
+          <Accordion
+            key={id}
+            id={id}
+            title={title}
+            description={description}
+            descriptionSecond={descriptionSecond}
+            link={link}
+            linkText={linkText}
+            notice={notice}
+          />
+        ),
+      )}
     </Box>
   );
 };

@@ -69,11 +69,15 @@ const styles = {
     mr: '14px',
   },
   tooltip: {},
+  tooltipText: {
+    fontSize: '14px',
+    fontWeight: 500,
+  },
   tooltipBtn: {
     borderColor: '#404040',
     padding: '6px 10px',
   },
-  tooltipText: {
+  tooltipBtnText: {
     textTransform: 'none',
     mr: '6px',
   },
