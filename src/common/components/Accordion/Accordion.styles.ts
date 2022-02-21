@@ -1,9 +1,17 @@
 const styles = {
-  item: { bgcolor: 'success.main', marginBottom: '8px', borderRadius: '4px' },
+  item: {
+    bgcolor: 'success.main',
+    marginBottom: '8px',
+    borderRadius: '4px',
+    '&.Mui-expanded': {
+      mt: '0',
+      mb: '8px',
+    },
+  },
   icon: { color: 'custom.white' },
   title: {},
   description: { color: '#A2A2A2' },
-  descriptionSecond: { color: '#A2A2A2' },
+  descriptionSecond: { color: '#A2A2A2', mt: '16px' },
   notice: { color: '#A2A2A2' },
   link: {
     display: 'flex',

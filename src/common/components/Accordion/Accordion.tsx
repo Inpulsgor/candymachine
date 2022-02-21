@@ -43,12 +43,16 @@ const Accordion: FC<AccordionProps> = ({
         sx={expanded === id ? styles.detailsExpanded : styles.details}
       >
         {description && (
-          <Typography sx={styles.description} variant="body2">
+          <Typography sx={styles.description} variant="body2" component="p">
             {description}
           </Typography>
         )}
         {descriptionSecond && (
-          <Typography sx={styles.descriptionSecond} variant="body2">
+          <Typography
+            sx={styles.descriptionSecond}
+            variant="body2"
+            component="p"
+          >
             {descriptionSecond}
           </Typography>
         )}
