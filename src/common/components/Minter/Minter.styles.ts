@@ -28,7 +28,7 @@ const styles = {
     color: '#FF9999',
   },
   connected: {
-    color: '#81c784',
+    color: '#4AAF47',
   },
   stats: {
     display: 'flex',
