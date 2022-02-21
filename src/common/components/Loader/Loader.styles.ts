@@ -1,8 +1,8 @@
-import { Theme } from "@mui/material";
+import { Theme } from '@mui/material';
 
 const styles = {
   backdrop: {
-    color: "custom.white",
+    color: 'custom.white',
     zIndex: (theme: Theme) => theme.zIndex.drawer + 1,
   },
 };

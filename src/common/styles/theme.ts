@@ -1,35 +1,35 @@
 // eslint-disable-next-line import/named
-import { createTheme, responsiveFontSizes, Theme } from "@mui/material";
+import { createTheme, responsiveFontSizes, Theme } from '@mui/material';
 
 let theme: Theme = createTheme({
   palette: {
     primary: {
-      main: "#141414",
-      contrastText: "#FFF",
+      main: '#141414',
+      contrastText: '#FFF',
     },
     secondary: {
-      main: "#000",
-      contrastText: "#FFF",
+      main: '#000',
+      contrastText: '#FFF',
     },
     success: {
-      main: "#191819",
-      contrastText: "#A2A2A2",
+      main: '#191819',
+      contrastText: '#A2A2A2',
     },
     info: {
-      main: "#FFF",
-      contrastText: "#002E36",
+      main: '#FFF',
+      contrastText: '#002E36',
     },
     custom: {
-      white: "#FFF",
-      black: "#000",
-      mercury: "#E4E4E4",
+      white: '#FFF',
+      black: '#000',
+      mercury: '#E4E4E4',
     },
     background: {
-      default: "#141414",
+      default: '#141414',
     },
     text: {
-      primary: "#FFF",
-      secondary: "#A2A2A2",
+      primary: '#FFF',
+      secondary: '#A2A2A2',
     },
   },
   typography: {
@@ -39,25 +39,25 @@ let theme: Theme = createTheme({
     fontWeightMedium: 500,
     fontWeightBold: 600,
     h2: {
-      fontSize: "40px",
+      fontSize: '40px',
       fontWeight: 500,
     },
     h3: {
-      fontSize: "20px",
+      fontSize: '20px',
       fontWeight: 500,
-      textTransform: "none",
+      textTransform: 'none',
     },
     h4: {
-      fontSize: "16px",
+      fontSize: '16px',
       fontWeight: 500,
     },
     body1: {
-      fontSize: "16px",
-      lineHeight: "16px",
+      fontSize: '16px',
+      lineHeight: '16px',
     },
     body2: {
-      fontSize: "14px",
-      lineHeight: "22.4px",
+      fontSize: '14px',
+      lineHeight: '22.4px',
     },
   },
   breakpoints: {

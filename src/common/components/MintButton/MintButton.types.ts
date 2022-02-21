@@ -1,4 +1,4 @@
-import { CandyMachineAccount } from "types/candymachine";
+import { CandyMachineAccount } from 'types/candymachine';
 
 export interface MintButtonProps {
   onMint: () => Promise<void>;

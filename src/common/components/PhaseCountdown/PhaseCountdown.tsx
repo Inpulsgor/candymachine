@@ -1,8 +1,8 @@
-import { FC, useState } from "react";
-import Countdown from "react-countdown";
-import { Paper, Box } from "@mui/material";
-import { CountdownRender, PhaseCountdownProps } from "./PhaseCountdown.types";
-import styles from "./PhaseCountdown.styles";
+import { FC, useState } from 'react';
+import Countdown from 'react-countdown';
+import { Paper, Box } from '@mui/material';
+import { CountdownRender, PhaseCountdownProps } from './PhaseCountdown.types';
+import styles from './PhaseCountdown.styles';
 
 const PhaseCountdown: FC<PhaseCountdownProps> = ({
   date,
@@ -13,7 +13,7 @@ const PhaseCountdown: FC<PhaseCountdownProps> = ({
   onComplete,
 }) => {
   const [isFixed, setIsFixed] = useState(
-    start && end && date ? start.getTime() - Date.now() < 0 : false
+    start && end && date ? start.getTime() - Date.now() < 0 : false,
   );
 
   const renderCountdown = ({

@@ -1,4 +1,4 @@
-import * as anchor from "@project-serum/anchor";
+import * as anchor from '@project-serum/anchor';
 export interface MinterProps {
   candyMachineId?: anchor.web3.PublicKey;
   connection: anchor.web3.Connection;
@@ -9,5 +9,5 @@ export interface MinterProps {
 export interface AlertState {
   open: boolean;
   message: string;
-  severity: "success" | "info" | "warning" | "error" | undefined;
+  severity: 'success' | 'info' | 'warning' | 'error' | undefined;
 }

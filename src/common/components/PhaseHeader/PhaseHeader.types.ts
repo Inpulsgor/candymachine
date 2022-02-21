@@ -1,4 +1,4 @@
-import { CandyMachineAccount } from "types/candymachine";
+import { CandyMachineAccount } from 'types/candymachine';
 
 export enum Phase {
   AnticipationPhase, // FL, AKA Phase 0

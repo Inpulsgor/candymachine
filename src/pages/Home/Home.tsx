@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { Box } from "@mui/material";
-import { PageWrapper } from "common/layout";
-import { MintCard, FAQs } from "common/components";
-import styles from "./Home.styles";
+import { FC } from 'react';
+import { Box } from '@mui/material';
+import { PageWrapper } from 'common/layout';
+import { MintCard, FAQs } from 'common/components';
+import styles from './Home.styles';
 
 const Home: FC = () => {
   return (

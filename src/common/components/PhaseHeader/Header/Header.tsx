@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { Container, Grid, Typography } from "@mui/material";
-import { PhaseCountdown } from "common/components";
-import { toDate } from "common/utils/misc";
-import { HeaderProps } from "./Header.types";
-import styles from "./Header.styles";
+import { FC } from 'react';
+import { Container, Grid, Typography } from '@mui/material';
+import { PhaseCountdown } from 'common/components';
+import { toDate } from 'common/utils/misc';
+import { HeaderProps } from './Header.types';
+import styles from './Header.styles';
 
 const Header: FC<HeaderProps> = ({
   phaseName,
@@ -20,7 +20,7 @@ const Header: FC<HeaderProps> = ({
             <PhaseCountdown
               date={toDate(date)}
               style={styles.countdown}
-              status={status || "COMPLETE"}
+              status={status || 'COMPLETE'}
             />
           </Container>
         </Grid>

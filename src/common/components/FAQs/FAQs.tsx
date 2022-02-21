@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { Box, Typography } from "@mui/material";
-import { Accordion } from "common/components";
-import data from "common/static/content.json";
-import styles from "./FAQs.styles";
+import { FC } from 'react';
+import { Box, Typography } from '@mui/material';
+import { Accordion } from 'common/components';
+import data from 'common/static/content.json';
+import styles from './FAQs.styles';
 
 const FAQs: FC = () => {
   const faqTitle = data.pages.home.faq.title;

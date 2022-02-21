@@ -1,12 +1,13 @@
-import { FunctionComponent, lazy } from "react";
-import { ROUTES } from "types/enum";
+import { FunctionComponent, lazy } from 'react';
+import { ROUTES } from 'types/enum';
 
 export const HomePage = lazy(
-  () => import("pages/Home/Home" /* webpackChunkName: "HomePage" */)
+  () => import('pages/Home/Home' /* webpackChunkName: "HomePage" */),
 );
 
 export const NotFoundPage = lazy(
-  () => import("pages/NotFound/NotFound" /* webpackChunkName: "NotFoundPage" */)
+  () =>
+    import('pages/NotFound/NotFound' /* webpackChunkName: "NotFoundPage" */),
 );
 
 interface Routes {

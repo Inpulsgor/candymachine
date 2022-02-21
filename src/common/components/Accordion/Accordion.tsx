@@ -1,15 +1,15 @@
-import { FC, useState } from "react";
+import { FC, useState } from 'react';
 import {
   Link,
   Typography,
   Accordion as AccordionItem,
   AccordionSummary,
   AccordionDetails,
-} from "@mui/material";
-import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
-import { AccordionProps } from "./Accordion.types";
-import { ReactComponent as PlayIcon } from "assets/icons/play.svg";
-import styles from "./Accordion.styles";
+} from '@mui/material';
+import { Add as AddIcon, Remove as RemoveIcon } from '@mui/icons-material';
+import { AccordionProps } from './Accordion.types';
+import { ReactComponent as PlayIcon } from 'assets/icons/play.svg';
+import styles from './Accordion.styles';
 
 const Accordion: FC<AccordionProps> = ({
   title,

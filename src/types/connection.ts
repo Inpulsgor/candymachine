@@ -1,4 +1,4 @@
-import { Blockhash, FeeCalculator } from "@solana/web3.js";
+import { Blockhash, FeeCalculator } from '@solana/web3.js';
 
 export interface BlockhashAndFeeCalculator {
   blockhash: Blockhash;

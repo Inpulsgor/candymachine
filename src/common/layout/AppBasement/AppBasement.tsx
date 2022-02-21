@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { Box, Toolbar, Typography, Button, IconButton } from "@mui/material";
-import { ReactComponent as Logo } from "assets/icons/logo.svg";
-import { ROUTES } from "types/enum";
-import styles from "./AppBasement.styles";
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Box, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import { ReactComponent as Logo } from 'assets/icons/logo.svg';
+import { ROUTES } from 'types/enum';
+import styles from './AppBasement.styles';
 
 const AppBasement: FC = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const AppBasement: FC = () => {
         </Typography>
         <Button>
           <Typography sx={styles.terms} variant="body2">
-            Terms {"&"} Conditions
+            Terms {'&'} Conditions
           </Typography>
         </Button>
       </Toolbar>

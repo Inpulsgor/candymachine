@@ -1,15 +1,15 @@
-import { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   AppBar as AppHeading,
   Toolbar,
   IconButton,
   Button,
   Typography,
-} from "@mui/material";
-import { ReactComponent as Logo } from "assets/icons/logo.svg";
-import { ROUTES } from "types/enum";
-import styles from "./AppBar.styles";
+} from '@mui/material';
+import { ReactComponent as Logo } from 'assets/icons/logo.svg';
+import { ROUTES } from 'types/enum';
+import styles from './AppBar.styles';
 
 const AppBar: FC = () => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { Backdrop, CircularProgress } from "@mui/material";
-import styles from "./Loader.styles";
+import { FC } from 'react';
+import { Backdrop, CircularProgress } from '@mui/material';
+import styles from './Loader.styles';
 
 interface LoaderProps {
   isLoading?: boolean;

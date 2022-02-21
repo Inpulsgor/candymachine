@@ -1,14 +1,14 @@
-import { FC, useEffect, useState } from "react";
-import { Button, Typography, CircularProgress } from "@mui/material";
-import { GatewayStatus, useGateway } from "@civic/solana-gateway-react";
-import { toDate } from "common/utils/misc";
+import { FC, useEffect, useState } from 'react';
+import { Button, Typography, CircularProgress } from '@mui/material';
+import { GatewayStatus, useGateway } from '@civic/solana-gateway-react';
+import { toDate } from 'common/utils/misc';
 import {
   whitelistSettings,
   publicSaleSettings,
   mintPanic,
-} from "common/components/UserSettings/UserSettings";
-import { MintButtonProps } from "./MintButton.types";
-import styles from "./MintButton.styles";
+} from 'common/components/UserSettings/UserSettings';
+import { MintButtonProps } from './MintButton.types';
+import styles from './MintButton.styles';
 
 const MintButton: FC<MintButtonProps> = ({
   onMint,
@@ -24,7 +24,7 @@ const MintButton: FC<MintButtonProps> = ({
 
   useEffect(() => {
     if (gatewayStatus === GatewayStatus.ACTIVE && clicked) {
-      console.log("Minting");
+      console.log('Minting');
       onMint();
       setClicked(false);
     }
@@ -63,12 +63,12 @@ const MintButton: FC<MintButtonProps> = ({
   const handleClick = async () => {
     setClicked(true);
     if (candyMachine?.state.isActive && candyMachine?.state.gatekeeper) {
-      console.log("gatekeeper active");
+      console.log('gatekeeper active');
       if (gatewayStatus === GatewayStatus.ACTIVE) {
         console.log(gatewayStatus + GatewayStatus.ACTIVE);
         setClicked(true);
       } else {
-        console.log("requeting token");
+        console.log('requeting token');
         let token = await requestGatewayToken();
         console.log(token);
       }
@@ -106,13 +106,13 @@ const MintButton: FC<MintButtonProps> = ({
     >
       <Typography sx={styles.buttonText} variant="body1">
         {candyMachine?.state.isSoldOut ? (
-          "Sold out"
+          'Sold out'
         ) : isMinting ? (
           <CircularProgress size={30} />
         ) : mintPanic.enabled ? (
-          "Mint Paused"
+          'Mint Paused'
         ) : (
-          "Mint"
+          'Mint'
         )}
       </Typography>
     </Button>

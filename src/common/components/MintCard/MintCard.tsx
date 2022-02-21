@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 import {
   Box,
   Card,
@@ -7,14 +7,14 @@ import {
   Typography,
   Tooltip,
   Button,
-} from "@mui/material";
-import { Info as InfoIcon } from "@mui/icons-material";
-import video from "assets/video.mp4";
+} from '@mui/material';
+import { Info as InfoIcon } from '@mui/icons-material';
+import video from 'assets/video.mp4';
 
-import { Wallet } from "common/components";
-import { ReactComponent as DiamondIcon } from "assets/icons/diamond.svg";
-import { MintCardProps } from "./MintCard.types";
-import styles from "./MintCard.styles";
+import { Wallet } from 'common/components';
+import { ReactComponent as DiamondIcon } from 'assets/icons/diamond.svg';
+import { MintCardProps } from './MintCard.types';
+import styles from './MintCard.styles';
 
 const MintCard: FC<MintCardProps> = () => {
   return (

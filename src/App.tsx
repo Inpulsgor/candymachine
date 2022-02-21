@@ -1,9 +1,9 @@
-import { FC, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
-import { AppLayout } from "common/layout";
-import { Loader } from "common/components";
-import { HomePage, NotFoundPage } from "./routes";
-import { ROUTES } from "types/enum";
+import { FC, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { AppLayout } from 'common/layout';
+import { Loader } from 'common/components';
+import { HomePage, NotFoundPage } from './routes';
+import { ROUTES } from 'types/enum';
 
 const App: FC = () => {
   return (

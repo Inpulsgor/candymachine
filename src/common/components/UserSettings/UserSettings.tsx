@@ -1,10 +1,10 @@
-import { Component } from "react";
-import * as anchor from "@project-serum/anchor";
+import { Component } from 'react';
+import * as anchor from '@project-serum/anchor';
 import {
   WhitelistSettings,
   PublicSaleSettings,
   WelcomeSettings,
-} from "types/user";
+} from 'types/user';
 
 function date(date: string) {
   let f = new anchor.BN(new Date(date).getTime() / 1000);
@@ -39,8 +39,8 @@ function date(date: string) {
 
 export const mintPanic = {
   enabled: false,
-  title: "Minting Paused",
-  desc: "We have dectected and issue while minting. Standby for an update",
+  title: 'Minting Paused',
+  desc: 'We have dectected and issue while minting. Standby for an update',
 };
 
 ///                             ///
@@ -49,12 +49,12 @@ export const mintPanic = {
 
 export const welcomeSettings: WelcomeSettings = {
   //Title and Description
-  title: "Welcome!",
-  desc: "Connect your wallet and load in! Whitelist mint starts soon!",
+  title: 'Welcome!',
+  desc: 'Connect your wallet and load in! Whitelist mint starts soon!',
 
   // Countdown Timer
   countdownEnable: false,
-  countdownTo: date("2 Jan 2022 00:00:00 GMT"),
+  countdownTo: date('2 Jan 2022 00:00:00 GMT'),
   //Example date below
   // date('29 2021 00:00:00 GMT')
 
@@ -93,14 +93,14 @@ export const whitelistSettings: WhitelistSettings = {
   //If you want to use the whitelist feature enable it.
   enabled: true,
 
-  startDate: date("1 Jan 2022 00:00:00 GMT"),
-  endDate: date("8 Jan 2022 00:00:00 GMT"),
+  startDate: date('1 Jan 2022 00:00:00 GMT'),
+  endDate: date('8 Jan 2022 00:00:00 GMT'),
   countdown: true,
   //Example date below
   // date('29 2021 00:00:00 GMT')
 
   //Wallet Title and Description
-  title: "White List",
+  title: 'White List',
   desc: undefined,
 
   //Enable Custom HTML Below
@@ -128,15 +128,15 @@ export class MintWhitelistCustomHTML extends Component {
 export const publicSaleSettings: PublicSaleSettings = {
   //start date and end date must match your Candy Machine Config for public launch!
 
-  startDate: date("7 Jan 2022 00:00:00 GMT"),
+  startDate: date('7 Jan 2022 00:00:00 GMT'),
   endDate: undefined,
   countdown: false,
   //Example date below
   // date('29 2021 00:00:00 GMT')
 
   //Title and Description
-  title: "Public Sale",
-  desc: "Sale is now live. Mint your NFT below",
+  title: 'Public Sale',
+  desc: 'Sale is now live. Mint your NFT below',
 
   //Enable Custom HTML
   enableCustomHTML: false,

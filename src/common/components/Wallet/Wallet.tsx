@@ -1,19 +1,19 @@
-import { FC, useMemo } from "react";
-import * as anchor from "@project-serum/anchor";
+import { FC, useMemo } from 'react';
+import * as anchor from '@project-serum/anchor';
 import {
   ConnectionProvider,
   WalletProvider,
-} from "@solana/wallet-adapter-react";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+} from '@solana/wallet-adapter-react';
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
   SolletWalletAdapter,
   MathWalletAdapter,
-} from "@solana/wallet-adapter-wallets";
-import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
-import { clusterApiUrl } from "@solana/web3.js";
-import { Minter } from "common/components";
+} from '@solana/wallet-adapter-wallets';
+import { WalletDialogProvider } from '@solana/wallet-adapter-material-ui';
+import { clusterApiUrl } from '@solana/web3.js';
+import { Minter } from 'common/components';
 // import Minter from "old/Minter";
 
 const candyMachineId = process.env.REACT_APP_CANDY_MACHINE_ID
@@ -35,7 +35,7 @@ const Wallet: FC = () => {
       new SolletWalletAdapter(),
       new MathWalletAdapter(),
     ],
-    []
+    [],
   );
 
   return (

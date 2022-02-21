@@ -1,9 +1,9 @@
-import { FC, useEffect, useMemo, useState } from "react";
-import * as anchor from "@project-serum/anchor";
-import { PublicKey } from "@solana/web3.js";
-import { useWallet } from "@solana/wallet-adapter-react";
-import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
-import { GatewayProvider } from "@civic/solana-gateway-react";
+import { FC, useEffect, useMemo, useState } from 'react';
+import * as anchor from '@project-serum/anchor';
+import { PublicKey } from '@solana/web3.js';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletDialogButton } from '@solana/wallet-adapter-material-ui';
+import { GatewayProvider } from '@civic/solana-gateway-react';
 import {
   Typography,
   Box,
@@ -11,29 +11,29 @@ import {
   CardContent,
   Snackbar,
   Alert,
-} from "@mui/material";
+} from '@mui/material';
 
-import { MintButton, PhaseHeader } from "common/components";
-import { Phase } from "common/components/PhaseHeader/PhaseHeader.types";
-import { welcomeSettings } from "common/components/UserSettings/UserSettings";
-import { MinterProps, AlertState } from "./Minter.types";
+import { MintButton, PhaseHeader } from 'common/components';
+import { Phase } from 'common/components/PhaseHeader/PhaseHeader.types';
+import { welcomeSettings } from 'common/components/UserSettings/UserSettings';
+import { MinterProps, AlertState } from './Minter.types';
 import {
   awaitTransactionSignatureConfirmation,
   CANDY_MACHINE_PROGRAM,
   getCandyMachineState,
   mintOneToken,
-} from "common/utils/candymachine";
+} from 'common/utils/candymachine';
 import {
   getPhase,
-  TOKEN_MINT_ADDRESS,
-  findAssociatedTokenAddress,
-} from "common/utils/misc";
-import { CandyMachineAccount } from "types/candymachine";
-import styles from "./Minter.styles";
+  // TOKEN_MINT_ADDRESS,
+  // findAssociatedTokenAddress,
+} from 'common/utils/misc';
+import { CandyMachineAccount } from 'types/candymachine';
+import styles from './Minter.styles';
 
 const initialAlersState = {
   open: false,
-  message: "",
+  message: '',
   severity: undefined,
 };
 
@@ -68,15 +68,15 @@ const Minter: FC<MinterProps> = ({
     } as anchor.Wallet;
   }, [publicKey, signAllTransactions, signTransaction]);
 
-  useEffect(() => {
-    if (publicKey) {
-      findAssociatedTokenAddress(publicKey, TOKEN_MINT_ADDRESS).then(
-        (response) => {
-          console.log("findAssociatedTokenAddress response", response);
-        }
-      );
-    }
-  }, [publicKey]);
+  // useEffect(() => {
+  //   if (publicKey) {
+  //     findAssociatedTokenAddress(publicKey, TOKEN_MINT_ADDRESS).then(
+  //       response => {
+  //         console.log('findAssociatedTokenAddress response', response);
+  //       },
+  //     );
+  //   }
+  // }, [publicKey]);
 
   useEffect(() => {
     if (itemsAvailable && mintingTotal) {
@@ -86,9 +86,9 @@ const Minter: FC<MinterProps> = ({
 
   useEffect(() => {
     (async () => {
-      if (!anchorWallet) return console.log("anchor wallet not found");
+      if (!anchorWallet) return console.log('anchor wallet not found');
 
-      console.log("wallet connected");
+      console.log('wallet connected');
       if (anchorWallet.publicKey) setPubKey(anchorWallet.publicKey);
 
       // try {
@@ -107,15 +107,15 @@ const Minter: FC<MinterProps> = ({
           const cndy = await getCandyMachineState(
             anchorWallet,
             candyMachineId,
-            connection
+            connection,
           );
           await setCandyMachine(cndy);
         } catch (e) {
-          console.log("Problem getting candy machine state");
+          console.log('Problem getting candy machine state');
           console.log(e);
         }
       } else {
-        console.log("No candy machine detected in configuration.");
+        console.log('No candy machine detected in configuration.');
       }
     })();
   }, [anchorWallet, candyMachineId, connection]);
@@ -128,7 +128,7 @@ const Minter: FC<MinterProps> = ({
             pubKey,
             {
               mint: candyMachine?.state.whitelistMintSettings?.mint,
-            }
+            },
           );
 
           return tokenAmount.value[0].account.data.parsed.info.tokenAmount
@@ -139,12 +139,12 @@ const Minter: FC<MinterProps> = ({
       }
     };
 
-    getTokenAmount().then((wlToken) => {
+    getTokenAmount().then(wlToken => {
       setWhiteListTokenBalance(wlToken);
       if (candyMachine?.state.whitelistMintSettings?.discountPrice && wlToken) {
         setPrice(
           candyMachine?.state.whitelistMintSettings?.discountPrice.toNumber() /
-            1000000000
+            1000000000,
         );
       } else if (candyMachine?.state.price) {
         setPrice(candyMachine?.state.price.toNumber() / 1000000000);
@@ -165,7 +165,7 @@ const Minter: FC<MinterProps> = ({
   const onMint = async () => {
     try {
       setIsMinting(true);
-      document.getElementById("#identity")?.click();
+      document.getElementById('#identity')?.click();
       if (connected && candyMachine?.program && publicKey) {
         const mintTxId = (await mintOneToken(candyMachine, publicKey))[0];
         let status: any = { err: true };
@@ -175,16 +175,16 @@ const Minter: FC<MinterProps> = ({
             mintTxId,
             txTimeout,
             connection,
-            "singleGossip",
-            true
+            'singleGossip',
+            true,
           );
         }
 
         if (!status?.err) {
           setAlertState({
             open: true,
-            message: "Congratulations! Mint succeeded!",
-            severity: "success",
+            message: 'Congratulations! Mint succeeded!',
+            severity: 'success',
           });
 
           setMintingTotal(mintingTotal! + 1);
@@ -195,22 +195,22 @@ const Minter: FC<MinterProps> = ({
         } else {
           setAlertState({
             open: true,
-            message: "Mint failed! Please try again!",
-            severity: "error",
+            message: 'Mint failed! Please try again!',
+            severity: 'error',
           });
         }
       }
     } catch (error: any) {
       // TODO: blech:
-      let message = error.msg || "Minting failed! Please try again!";
+      let message = error.msg || 'Minting failed! Please try again!';
       if (!error.msg) {
         if (!error.message) {
-          message = "Transaction Timeout! Please try again.";
-        } else if (error.message.indexOf("0x138")) {
+          message = 'Transaction Timeout! Please try again.';
+        } else if (error.message.indexOf('0x138')) {
           console.log(error.message);
-        } else if (error.message.indexOf("0x137")) {
+        } else if (error.message.indexOf('0x137')) {
           message = `SOLD OUT!`;
-        } else if (error.message.indexOf("0x135")) {
+        } else if (error.message.indexOf('0x135')) {
           message = `Insufficient funds to mint. Please fund your wallet.`;
         }
       } else {
@@ -225,7 +225,7 @@ const Minter: FC<MinterProps> = ({
       setAlertState({
         open: true,
         message,
-        severity: "error",
+        severity: 'error',
       });
     } finally {
       setIsMinting(false);
@@ -243,10 +243,10 @@ const Minter: FC<MinterProps> = ({
   const availableTotal = !!itemsAvailable && !!mintingTotal && showTotalMinted;
 
   const getVisibleTotal = () => {
-    if (!connected) return "loading";
-    else if (connected && !showTotalMinted) return "";
+    if (!connected) return 'loading';
+    else if (connected && !showTotalMinted) return '';
 
-    return "";
+    return '';
   };
 
   const onAlertClose = () => setAlertState(initialAlersState);
@@ -269,7 +269,7 @@ const Minter: FC<MinterProps> = ({
                     {whiteListTokenBalance}
                   </Typography>
                 ) : (
-                  <Box sx={{ mb: "16px" }} className="loading"></Box>
+                  <Box sx={{ mb: '16px' }} className="loading"></Box>
                 )}
 
                 <Typography>Mints to Claim</Typography>
@@ -279,16 +279,16 @@ const Minter: FC<MinterProps> = ({
             <Box sx={styles.stats} style={{ marginLeft: 0 }}>
               {showMinted && (
                 <Typography className={getVisibleTotal()}>
-                  {availableTotal && mintingTotal + " / " + itemsAvailable}
+                  {availableTotal && mintingTotal + ' / ' + itemsAvailable}
                 </Typography>
               )}
 
               {showPrice && (
                 <Typography
-                  sx={{ paddingRight: !price ? "10px" : "" }}
-                  className={!price ? "loading" : ""}
+                  sx={{ paddingRight: !price ? '10px' : '' }}
+                  className={!price ? 'loading' : ''}
                 >
-                  {price ? `${price} Sol` : ""}
+                  {price ? `${price} Sol` : ''}
                 </Typography>
               )}
             </Box>
@@ -350,12 +350,12 @@ const Minter: FC<MinterProps> = ({
           variant="body1"
           component="span"
         >
-          {connected ? "connected" : "not connected"}
+          {connected ? 'connected' : 'not connected'}
         </Typography>
       </CardContent>
 
       <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         open={alertState.open}
         autoHideDuration={6000}
         onClose={onAlertClose}

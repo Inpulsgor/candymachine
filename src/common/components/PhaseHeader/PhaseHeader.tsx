@@ -1,12 +1,12 @@
-import { FC } from "react";
-import Header from "./Header/Header";
-import { Phase, PhaseHeaderProps } from "./PhaseHeader.types";
+import { FC } from 'react';
+import Header from './Header/Header';
+import { Phase, PhaseHeaderProps } from './PhaseHeader.types';
 import {
   publicSaleSettings,
   whitelistSettings,
   welcomeSettings,
   mintPanic,
-} from "common/components/UserSettings/UserSettings";
+} from 'common/components/UserSettings/UserSettings';
 
 const PhaseHeader: FC<PhaseHeaderProps> = ({ phase }) => {
   return (
