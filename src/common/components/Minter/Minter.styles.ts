@@ -15,7 +15,7 @@ const styles = {
     background: 'linear-gradient(90deg, #FBC7D4 0%, #9796F0 100%), #4AAF47',
     padding: '20px 0',
   },
-  walletBtnText: { fontWeight: 600, color: '#141414', textTransform: 'none' },
+  walletBtnText: { fontWeight: 600, color: '#151315', textTransform: 'none' },
   contentBoxSecond: {
     width: '100%',
     display: 'flex',

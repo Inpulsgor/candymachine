@@ -10,7 +10,7 @@ const styles = {
     fontSize: '16px',
     fontWeight: 'bold',
   },
-  buttonText: { fontWeight: 600, color: '#141414', textTransform: 'none' },
+  buttonText: { fontWeight: 600, color: '#151315', textTransform: 'none' },
 };
 
 export default styles;
