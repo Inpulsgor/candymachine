@@ -10,6 +10,7 @@ import {
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import { ROUTES } from 'types/enum';
 import styles from './AppBar.styles';
+import external from 'common/static/external.json';
 
 const AppBar: FC = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const AppBar: FC = () => {
         >
           <Logo width="40" />
         </IconButton>
-        <Button color="inherit">
+        <Button href={external.links.faqs} color="inherit">
           <Typography variant="h3">FAQs</Typography>
         </Button>
       </Toolbar>

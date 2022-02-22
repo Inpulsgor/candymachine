@@ -4,6 +4,7 @@ import { Box, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import { ROUTES } from 'types/enum';
 import styles from './AppBasement.styles';
+import external from 'common/static/external.json';
 
 const AppBasement: FC = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const AppBasement: FC = () => {
           Diamond Hands NFT, a collaboration between Cryptonary and DC LLC. All
           rights reserved.
         </Typography>
-        <Button>
+        <Button href={external.links.policy}>
           <Typography sx={styles.terms} variant="body2">
             Terms {'&'} Conditions
           </Typography>
