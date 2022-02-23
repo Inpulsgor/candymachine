@@ -36,27 +36,45 @@ const PhaseTooltip: FC<PhaseTooltipProps> = () => {
       return setcurrentPhase(phaseElement[0]);
     }
 
-    if (!phaseElement?.length) return setcurrentPhase(phases[0]);
+    if (!phaseElement?.length) {
+      return setcurrentPhase(phases[0]);
+    }
   }, [current, currentPhase]);
 
   return (
     <Tooltip
       arrow
+      placement="top"
       sx={styles.tooltip}
       title={
         <>
-          <Typography sx={styles.tooltipText} variant="body2" component="p">
-            {currentPhase && currentPhase.description}{' '}
-          </Typography>
-          <Typography sx={styles.tooltipText} variant="body2" component="span">
-            {currentPhase && currentPhase.duration}{' '}
-          </Typography>
-          <Typography sx={styles.tooltipText} variant="body2" component="span">
-            - {currentPhase && currentPhase.starts}
-          </Typography>
+          {currentPhase?.description && (
+            <Typography sx={styles.tooltipText} variant="body2" component="p">
+              {currentPhase.description}{' '}
+            </Typography>
+          )}
+
+          {currentPhase?.duration && (
+            <Typography
+              sx={styles.tooltipText}
+              variant="body2"
+              component="span"
+            >
+              {currentPhase.duration}{' '}
+            </Typography>
+          )}
+
+          {currentPhase?.starts && (
+            <Typography
+              sx={styles.tooltipText}
+              variant="body2"
+              component="span"
+            >
+              - {currentPhase.starts}
+            </Typography>
+          )}
         </>
       }
-      placement="top"
     >
       <Button sx={styles.tooltipBtn} variant="outlined" color="info">
         <Typography sx={styles.tooltipBtnText} variant="body2">
