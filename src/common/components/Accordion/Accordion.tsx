@@ -1,14 +1,14 @@
 import { FC, useState } from 'react';
 import {
-  Link,
   Typography,
   Accordion as AccordionItem,
   AccordionSummary,
   AccordionDetails,
+  CardMedia,
 } from '@mui/material';
 import { Add as AddIcon, Remove as RemoveIcon } from '@mui/icons-material';
+import { EmbeddedVideo } from 'common/components';
 import { AccordionProps } from './Accordion.types';
-import { ReactComponent as PlayIcon } from 'assets/icons/play.svg';
 import styles from './Accordion.styles';
 
 const Accordion: FC<AccordionProps> = ({
@@ -16,14 +16,13 @@ const Accordion: FC<AccordionProps> = ({
   description,
   descriptionSecond,
   link,
-  linkText,
   notice,
   id,
 }) => {
   const [expanded, setExpanded] = useState<number>(0);
 
-  const handleChange = (value: number) => {
-    expanded === value ? setExpanded(0) : setExpanded(value);
+  const handleChange = (itemID: number) => {
+    expanded === itemID ? setExpanded(0) : setExpanded(itemID);
   };
 
   return (
@@ -65,10 +64,11 @@ const Accordion: FC<AccordionProps> = ({
           </Typography>
         )}
         {link && (
-          <Link sx={styles.link} href={link}>
-            <PlayIcon />
-            <Typography sx={styles.linkText}>{linkText}</Typography>
-          </Link>
+          <EmbeddedVideo
+            videoLink={link}
+            videoTitle="Mint process video guide"
+            videoExpanded={Boolean(expanded)}
+          />
         )}
       </AccordionDetails>
     </AccordionItem>

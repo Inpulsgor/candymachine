@@ -26,7 +26,7 @@ const AppBasement: FC = () => {
           Diamond Hands NFT, a collaboration between Cryptonary and DC LLC. All
           rights reserved.
         </Typography>
-        <Button href={external.links.policy}>
+        <Button href={external.links.policy} target="_blank" rel="noopener">
           <Typography sx={styles.terms} variant="body2">
             Terms {'&'} Conditions
           </Typography>

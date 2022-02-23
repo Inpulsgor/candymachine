@@ -7,6 +7,7 @@ import {
   Typography,
   Tooltip,
   Button,
+  Link,
 } from '@mui/material';
 import { Info as InfoIcon } from '@mui/icons-material';
 import video from 'assets/video.mp4';
@@ -15,6 +16,8 @@ import { Wallet } from 'common/components';
 import { ReactComponent as DiamondIcon } from 'assets/icons/diamond.svg';
 import { MintCardProps } from './MintCard.types';
 import styles from './MintCard.styles';
+import phases from 'common/static/phases.json';
+import external from 'common/static/external.json';
 
 const MintCard: FC<MintCardProps> = () => {
   return (
@@ -44,9 +47,17 @@ const MintCard: FC<MintCardProps> = () => {
           arrow
           sx={styles.tooltip}
           title={
-            <Typography sx={styles.tooltipText} variant="body2">
-              Every Pro member can mint ONE NFT only
-            </Typography>
+            <>
+              <Typography sx={styles.tooltipText} variant="body2">
+                {phases.phases.first.description}
+              </Typography>
+              <Typography sx={styles.tooltipText} variant="body2">
+                {phases.phases.first.lasts}
+              </Typography>
+              <Typography sx={styles.tooltipText} variant="body2">
+                {phases.phases.first.starts}
+              </Typography>
+            </>
           }
           placement="top"
         >
@@ -63,8 +74,17 @@ const MintCard: FC<MintCardProps> = () => {
 
       <CardContent sx={styles.contentBoxSecond}>
         <Typography sx={styles.description} variant="body2" component="p">
-          If you have any issues please reach out to a member of the team on
-          Discord. We’ll be happy to help.
+          If you have any issues please reach out to a member of the team on{' '}
+          <Link
+            href={external.links.discord}
+            target="_blank"
+            rel="noopener"
+            color="inherit"
+            variant="body2"
+          >
+            Discord
+          </Link>
+          . We’ll be happy to help.
         </Typography>
       </CardContent>
     </Card>

@@ -1,5 +1,6 @@
 export { default as Loader } from './Loader/Loader';
 export { default as FAQs } from './FAQs/FAQs';
+export { default as EmbeddedVideo } from './EmbeddedVideo/EmbeddedVideo';
 export { default as Accordion } from './Accordion/Accordion';
 export { default as PhaseCountdown } from './PhaseCountdown/PhaseCountdown';
 export { default as MintCard } from './MintCard/MintCard';

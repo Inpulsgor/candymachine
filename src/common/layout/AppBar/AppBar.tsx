@@ -28,7 +28,12 @@ const AppBar: FC = () => {
         >
           <Logo width="40" />
         </IconButton>
-        <Button href={external.links.faqs} color="inherit">
+        <Button
+          href={external.links.faqs}
+          target="_blank"
+          rel="noopener"
+          color="inherit"
+        >
           <Typography variant="h3">FAQs</Typography>
         </Button>
       </Toolbar>

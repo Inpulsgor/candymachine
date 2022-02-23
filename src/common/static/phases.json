@@ -1,0 +1,24 @@
+{
+  "phases": {
+    "first": {
+      "description": "Active CPro members who are on the Whitelist can mint ONLY ONE.",
+      "lasts": "Lasts 24 hours",
+      "starts": "starts at 00:00 UTC on 25/02/2022"
+    },
+    "second": {
+      "description": "Active CPro members will be able to return and mint up to 14 more NFTs.",
+      "lasts": "Lasts 24 hours",
+      "starts": "starts at 00:00 UTC on 26/02/2022"
+    },
+    "third": {
+      "description": "Anyone on the Whitelist will be able to mint one NFT. Active CPro members can continue minting up to their limit of 14 NFTs.",
+      "lasts": "Lasts 12 hours",
+      "starts": "starts at 12:00 UTC on 26/02/2022"
+    },
+    "last": {
+      "description": "Anyone will be able to mint as many NFTs as they want.",
+      "lasts": "Lasts 24 hours",
+      "starts": "starts at 00:00 UTC on 27/02/2022"
+    }
+  }
+}

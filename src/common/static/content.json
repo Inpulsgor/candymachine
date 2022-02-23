@@ -9,7 +9,7 @@
             "title": "How do i mint",
             "description": "Connect your phantom wallet. Once connected a page with all the details for the mint will come up. Check that you have enough SOL in your wallet to purchase the NFT (we recommend 1.1SOL or more). Make sure you also have a minting token if minting in Phase 1 &2. Once you’ve checked the above, then simply click the mint button, approve the transaction. Very quickly you should see a message pop up confirming a successful mint. Check your wallet and you should see your NFT! Congratulations on successfully minting a CPRO NFT.",
             "descriptionSecond": "For an in-depth guide please check the below video, showing the whole mint process :)",
-            "link": "https://www.youtube.com/watch?v=7B9krM5zQCw&ab_channel=Cryptonary",
+            "link": "https://www.youtube.com/embed/7B9krM5zQCw",
             "linkText": "Watch Video Tutorial",
             "notice": ""
           },
