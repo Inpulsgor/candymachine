@@ -13,7 +13,7 @@ import {
   Alert,
 } from '@mui/material';
 
-import { MintButton, PhaseHeader } from 'common/components';
+import { MintButton, PhaseHeader, NotificationPopup } from 'common/components';
 import { Phase } from 'common/components/PhaseHeader/PhaseHeader.types';
 import { welcomeSettings } from 'common/components/UserSettings/UserSettings';
 import { MinterProps, AlertState } from './Minter.types';
@@ -354,20 +354,7 @@ const Minter: FC<MinterProps> = ({
         </Typography>
       </CardContent>
 
-      <Snackbar
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        open={alertState.open}
-        autoHideDuration={6000}
-        onClose={onAlertClose}
-      >
-        <Alert
-          onClose={onAlertClose}
-          severity={alertState.severity}
-          variant="filled"
-        >
-          {alertState.message}
-        </Alert>
-      </Snackbar>
+      <NotificationPopup alertState={alertState} onAlertClose={onAlertClose} />
     </>
   );
 };

@@ -5,19 +5,15 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  Tooltip,
-  Button,
   Link,
 } from '@mui/material';
-import { Info as InfoIcon } from '@mui/icons-material';
-import video from 'assets/video.mp4';
 
-import { Wallet } from 'common/components';
-import { ReactComponent as DiamondIcon } from 'assets/icons/diamond.svg';
-import { MintCardProps } from './MintCard.types';
-import styles from './MintCard.styles';
-import phases from 'common/static/phases.json';
 import external from 'common/static/external.json';
+import { Wallet, PhaseTooltip } from 'common/components';
+import { MintCardProps } from './MintCard.types';
+import { ReactComponent as DiamondIcon } from 'assets/icons/diamond.svg';
+import video from 'assets/video.mp4';
+import styles from './MintCard.styles';
 
 const MintCard: FC<MintCardProps> = () => {
   return (
@@ -43,31 +39,7 @@ const MintCard: FC<MintCardProps> = () => {
           <DiamondIcon width="26" />
         </Box>
 
-        <Tooltip
-          arrow
-          sx={styles.tooltip}
-          title={
-            <>
-              <Typography sx={styles.tooltipText} variant="body2">
-                {phases.phases.first.description}
-              </Typography>
-              <Typography sx={styles.tooltipText} variant="body2">
-                {phases.phases.first.lasts}
-              </Typography>
-              <Typography sx={styles.tooltipText} variant="body2">
-                {phases.phases.first.starts}
-              </Typography>
-            </>
-          }
-          placement="top"
-        >
-          <Button sx={styles.tooltipBtn} variant="outlined" color="info">
-            <Typography sx={styles.tooltipBtnText} variant="body2">
-              Phase 1
-            </Typography>
-            <InfoIcon sx={styles.tooltipIcon} />
-          </Button>
-        </Tooltip>
+        <PhaseTooltip />
       </CardContent>
 
       <Wallet />

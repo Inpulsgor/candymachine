@@ -6,10 +6,10 @@ import {
   WelcomeSettings,
 } from 'types/user';
 
-function date(date: string) {
+export const date = (date: string) => {
   let f = new anchor.BN(new Date(date).getTime() / 1000);
   return f;
-}
+};
 
 //
 // Below are settings that will trigger the UI of the mint box currently. This is a basic
@@ -91,11 +91,11 @@ export class MintWelcomeCustomHTML extends Component {
 
 export const whitelistSettings: WhitelistSettings = {
   //If you want to use the whitelist feature enable it.
-  enabled: true,
+  enabled: false,
 
   startDate: date('1 Jan 2022 00:00:00 GMT'),
   endDate: date('8 Jan 2022 00:00:00 GMT'),
-  countdown: true,
+  countdown: false,
   //Example date below
   // date('29 2021 00:00:00 GMT')
 

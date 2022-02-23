@@ -77,7 +77,7 @@ let theme: Theme = createTheme({
           color: '#151315',
           padding: '16px',
           width: '100%',
-          maxWidth: '330px',
+          maxWidth: '388px',
         },
         tooltipPlacementTop: {
           backgroundColor: '#E4E4E4',
