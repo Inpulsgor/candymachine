@@ -1,34 +1,33 @@
 {
   "files": {
     "main.css": "/candymachine/static/css/main.8ec9a725.css",
-    "main.js": "/candymachine/static/js/main.b9f5ee4a.js",
+    "main.js": "/candymachine/static/js/main.3fb03a5e.js",
     "static/js/431.a76517a8.chunk.js": "/candymachine/static/js/431.a76517a8.chunk.js",
     "static/js/126.c6c3957e.chunk.js": "/candymachine/static/js/126.c6c3957e.chunk.js",
     "static/js/489.a36189af.chunk.js": "/candymachine/static/js/489.a36189af.chunk.js",
     "static/js/608.cacfa34c.chunk.js": "/candymachine/static/js/608.cacfa34c.chunk.js",
     "static/js/507.37dcfee7.chunk.js": "/candymachine/static/js/507.37dcfee7.chunk.js",
-    "HomePage.js": "/candymachine/static/js/HomePage.e98488c1.chunk.js",
-    "NotFoundPage.js": "/candymachine/static/js/NotFoundPage.7c1c4cd7.chunk.js",
+    "HomePage.js": "/candymachine/static/js/HomePage.8333e4c1.chunk.js",
+    "NotFoundPage.js": "/candymachine/static/js/NotFoundPage.029d0f62.chunk.js",
     "static/js/787.f64e0b59.chunk.js": "/candymachine/static/js/787.f64e0b59.chunk.js",
     "static/js/204.00673ac9.chunk.js": "/candymachine/static/js/204.00673ac9.chunk.js",
     "static/media/video.mp4": "/candymachine/static/media/video.c0cf13f6344a23b9bb3d.mp4",
+    "static/media/diamond.svg": "/candymachine/static/media/diamond.5edc30c3652ebe4b633f34807358f232.svg",
     "index.html": "/candymachine/index.html",
     "static/media/logo.svg": "/candymachine/static/media/logo.946e57a2fdc4b4f529be15de91263ece.svg",
-    "static/media/diamond.svg": "/candymachine/static/media/diamond.96b66660d5ca077ca1f3c99cc5992375.svg",
-    "static/media/play.svg": "/candymachine/static/media/play.af9b12ba2ffe0954cf96cb8484dec2f7.svg",
     "main.8ec9a725.css.map": "/candymachine/static/css/main.8ec9a725.css.map",
-    "main.b9f5ee4a.js.map": "/candymachine/static/js/main.b9f5ee4a.js.map",
+    "main.3fb03a5e.js.map": "/candymachine/static/js/main.3fb03a5e.js.map",
     "431.a76517a8.chunk.js.map": "/candymachine/static/js/431.a76517a8.chunk.js.map",
     "126.c6c3957e.chunk.js.map": "/candymachine/static/js/126.c6c3957e.chunk.js.map",
     "489.a36189af.chunk.js.map": "/candymachine/static/js/489.a36189af.chunk.js.map",
     "608.cacfa34c.chunk.js.map": "/candymachine/static/js/608.cacfa34c.chunk.js.map",
-    "HomePage.e98488c1.chunk.js.map": "/candymachine/static/js/HomePage.e98488c1.chunk.js.map",
-    "NotFoundPage.7c1c4cd7.chunk.js.map": "/candymachine/static/js/NotFoundPage.7c1c4cd7.chunk.js.map",
+    "HomePage.8333e4c1.chunk.js.map": "/candymachine/static/js/HomePage.8333e4c1.chunk.js.map",
+    "NotFoundPage.029d0f62.chunk.js.map": "/candymachine/static/js/NotFoundPage.029d0f62.chunk.js.map",
     "787.f64e0b59.chunk.js.map": "/candymachine/static/js/787.f64e0b59.chunk.js.map",
     "204.00673ac9.chunk.js.map": "/candymachine/static/js/204.00673ac9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8ec9a725.css",
-    "static/js/main.b9f5ee4a.js"
+    "static/js/main.3fb03a5e.js"
   ]
 }
