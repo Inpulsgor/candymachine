@@ -5,7 +5,6 @@ import { PhaseTooltipProps } from './PhaseTooltip.types';
 import styles from './PhaseTooltip.styles';
 import { phases, Phase } from 'common/static/phases';
 import { toDate } from 'common/utils/misc';
-import { date } from 'common/components/UserSettings/UserSettings';
 
 const PhaseTooltip: FC<PhaseTooltipProps> = () => {
   const [currentPhase, setcurrentPhase] = useState<Phase>();

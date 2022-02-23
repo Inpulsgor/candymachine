@@ -1,6 +1,5 @@
 import * as anchor from '@project-serum/anchor';
 import { date } from 'common/components/UserSettings/UserSettings';
-import { toDate } from 'common/utils/misc';
 
 export interface Phase {
   phase: number;
