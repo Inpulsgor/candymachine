@@ -9,6 +9,7 @@ import { toDate } from 'common/utils/misc';
 const PhaseTooltip: FC<PhaseTooltipProps> = () => {
   const [currentPhase, setcurrentPhase] = useState<Phase>();
   const [phaseOverlap, setPhaseOverlap] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
   const current = new Date().getTime();
 
   useEffect(() => {
@@ -44,6 +45,9 @@ const PhaseTooltip: FC<PhaseTooltipProps> = () => {
     <Tooltip
       arrow
       placement="top"
+      open={showTooltip}
+      onOpen={() => setShowTooltip(true)}
+      onClose={() => setShowTooltip(false)}
       sx={styles.tooltip}
       title={
         <>
@@ -75,7 +79,12 @@ const PhaseTooltip: FC<PhaseTooltipProps> = () => {
         </>
       }
     >
-      <Button sx={styles.tooltipBtn} variant="outlined" color="info">
+      <Button
+        sx={styles.tooltipBtn}
+        variant="outlined"
+        color="info"
+        onClick={() => setShowTooltip(!showTooltip)}
+      >
         <Typography sx={styles.tooltipBtnText} variant="body2">
           Phase {phaseOverlap ? '2 & 3' : currentPhase?.phase}
         </Typography>
